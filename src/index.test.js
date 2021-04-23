@@ -1,10 +1,13 @@
+"use strict";
+const metaData = require("./polkadot_utils/metadata/metadata")
 const chai = require('chai');
 const expect = chai.expect;
+const server = require('./index.js');
 
-describe('Health - IT', () => {
-    it('provides health status', (done) => {
-        const basket = ['lotion'];
-        expect(basket.indexOf('lotion')).to.equal(0);
+
+describe('Metadata Test', () => {
+    it('Metadata Test', (done) => {
+        expect(server.abi).to.equal(metaData)
         done();
     });
 });
