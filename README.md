@@ -1,0 +1,1 @@
+# SubsCrypt-npm-library
