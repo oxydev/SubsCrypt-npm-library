@@ -3,18 +3,20 @@
   "main": "src/index.js",
   "version": "0.0.2",
   "author": "Saber Zafarpoor <szafarpoor@ce.sharif.edu> (https://github.com/saberdotcoder)",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "repository": "https://github.com/oxydev/SubsCrypt-npm-library/",
   "scripts": {
     "test": "mocha src/*.test.js --exit"
   },
   "dependencies": {
     "@polkadot/api": "^4.6.2",
-    "@polkadot/api-contract": "^4.6.2",
-    "@polkadot/extension-dapp": "^0.37.3-14"
+    "@polkadot/api-contract": "^4.6.2"
   },
   "devDependencies": {
-    "mocha": "8.3.2",
-    "chai": "4.3.4"
+    "chai": "4.3.4",
+    "eslint": "^7.25.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "mocha": "8.3.2"
   }
 }
