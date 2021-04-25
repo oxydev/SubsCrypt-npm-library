@@ -1,9 +1,34 @@
 const metaData = require('./polkadot_utils/configs/metadata');
-const { callViewFunction } = require('./polkadot_utils/interact');
+const {
+  setSubscryptPass, refund,
+  withdraw,
+  subscribe,
+  changeDisable,
+  editPlan,
+  addPlan,
+  providerRegister,
+} = require('./polkadot_utils/subscryptSetFunctions');
+const {
+  getPlanData, checkSubscription, retrieveWholeDataWithPassword, retrieveDataWithPassword,
+  retrieveDataWithWallet, checkAuth,
+} = require('./polkadot_utils/subscryptDataGetter');
 const contract = require('./polkadot_utils/api').getContract();
 
 module.exports = {
   abi: metaData,
   contract,
-  callViewFunction,
+  getPlanData,
+  checkSubscription,
+  retrieveWholeDataWithPassword,
+  setSubscryptPass,
+  retrieveDataWithPassword,
+  retrieveDataWithWallet,
+  checkAuth,
+  refund,
+  withdraw,
+  subscribe,
+  changeDisable,
+  editPlan,
+  addPlan,
+  providerRegister,
 };

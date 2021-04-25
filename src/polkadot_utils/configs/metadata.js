@@ -1,7 +1,7 @@
 const metaData = {
   metadataVersion: '0.1.0',
   source: {
-    hash: '0xc5257cf5e50b632c283fa96a237ac51dd791968394988761affb021da6ee8941',
+    hash: '0x0a9ea64ca19490416ae992f1bfc4921a08dc0d754b91bc81a6141a39d26efb07',
     language: 'ink! 3.0.0-rc3',
     compiler: 'rustc 1.53.0-nightly',
   },
@@ -33,7 +33,92 @@ const metaData = {
       },
     ],
     docs: [],
-    events: [],
+    events: [
+      {
+        args: [
+          {
+            docs: [],
+            indexed: true,
+            name: 'address',
+            type: {
+              displayName: [
+                'AccountId',
+              ],
+              type: 6,
+            },
+          },
+        ],
+        docs: [],
+        name: 'ProviderRegisterEvent',
+      },
+      {
+        args: [
+          {
+            docs: [],
+            indexed: true,
+            name: 'owner',
+            type: {
+              displayName: [
+                'AccountId',
+              ],
+              type: 6,
+            },
+          },
+          {
+            docs: [],
+            indexed: false,
+            name: 'duration',
+            type: {
+              displayName: [
+                'u64',
+              ],
+              type: 1,
+            },
+          },
+          {
+            docs: [],
+            indexed: false,
+            name: 'price',
+            type: {
+              displayName: [
+                'u128',
+              ],
+              type: 2,
+            },
+          },
+        ],
+        docs: [],
+        name: 'AddPlanEvent',
+      },
+      {
+        args: [
+          {
+            docs: [],
+            indexed: true,
+            name: 'provider',
+            type: {
+              displayName: [
+                'AccountId',
+              ],
+              type: 6,
+            },
+          },
+          {
+            docs: [],
+            indexed: true,
+            name: 'plan_index',
+            type: {
+              displayName: [
+                'u128',
+              ],
+              type: 2,
+            },
+          },
+        ],
+        docs: [],
+        name: 'SubscribeEvent',
+      },
+    ],
     messages: [
       {
         args: [
@@ -312,7 +397,7 @@ const metaData = {
           },
         ],
         docs: [
-          ' Subscribing to `plan_index` of the `provider_address` with `Sha2x256` hashed `pass` and `configs`',
+          ' Subscribing to `plan_index` of the `provider_address` with `Sha2x256` hashed `pass` and `metadata`',
           '',
           ' In this function, we will lock (`plan.max_refund_permille_policy` * `transferred_balance`) / 1000',
           ' in the `Linked List` of the contract and will transfer the rest of paid money directly to provider',
@@ -701,6 +786,43 @@ const metaData = {
           type: 27,
         },
         selector: '0x08072fa8',
+      },
+      {
+        args: [
+          {
+            name: 'provider_address',
+            type: {
+              displayName: [
+                'AccountId',
+              ],
+              type: 6,
+            },
+          },
+          {
+            name: 'plan_index',
+            type: {
+              displayName: [
+                'u128',
+              ],
+              type: 2,
+            },
+          },
+        ],
+        docs: [
+          ' This function can be called to get plan data',
+        ],
+        mutates: false,
+        name: [
+          'get_plan_data',
+        ],
+        payable: false,
+        returnType: {
+          displayName: [
+            'PlanConsts',
+          ],
+          type: 13,
+        },
+        selector: '0x1191b42c',
       },
       {
         args: [
