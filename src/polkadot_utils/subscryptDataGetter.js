@@ -5,7 +5,7 @@ const { callViewFunction } = require('./interact');
 //  plan_index: u128
 /**
  * @function - A CallView function, And It's For Getting Plan Data
- * @param args - Arguments Of Refund Function
+ * @param args - Arguments Of getPlanData Function
  * @param {string} args[0] - Address of Provider
  * @param {number} args[1] - plan_index
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
@@ -18,7 +18,7 @@ module.exports.getPlanData = async (...args) => callViewFunction('getPlanData',
 //  plan_index: u128
 /**
  * @function - A CallView function, And It's For Checking Subscription
- * @param args - Arguments Of Refund Function
+ * @param args - Arguments Of checkSubscription Function
  * @param {string} args[0] - Address Of User
  * @param {string} args[1] - Address of Provider
  * @param {number} args[2] - plan_index
@@ -32,7 +32,7 @@ module.exports.checkSubscription = async (...args) => callViewFunction('checkSub
 //             phrase: String,
 /**
  * @function - A CallView function, And It's For Retrieving Whole Data With Password
- * @param args - Arguments Of Refund Function
+ * @param args - Arguments Of retrieveWholeDataWithPassword Function
  * @param {string} args[0] - Address Of User
  * @param {string} args[1] - token
  * @param {string} args[2] - phrase
@@ -47,7 +47,7 @@ module.exports.retrieveWholeDataWithPassword = async (...args) => callViewFuncti
 //             phrase: String,
 /**
  * @function - A CallView function, And It's For Retrieving Data With Password
- * @param args - Arguments Of Refund Function
+ * @param args - Arguments Of retrieveDataWithPassword Function
  * @param {string} args[0] - Address Of User
  * @param {string} args[1] - Address of Provider
  * @param {string} args[2] - token
@@ -61,9 +61,9 @@ module.exports.retrieveDataWithPassword = async (...args) => callViewFunction('r
 //            provider: AccountId,
 /**
  * @function - A CallView function, And It's For Retrieving Data With Wallet
- * @param args - Arguments Of Refund Function
- * @param {string} args[0] - Address Of User
- * @param {string} args[1] - Address of Provider
+ * @param {string} sender - Address Of User
+ * @param args - Arguments Of retrieveDataWithWallet Function
+ * @param {string} args[0] - Address of Provider
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
 module.exports.retrieveDataWithWallet = async (sender, ...args) => callViewFunction('retrieveDataWithWallet',
@@ -72,8 +72,7 @@ module.exports.retrieveDataWithWallet = async (sender, ...args) => callViewFunct
 //  user : sender
 /**
  * @function - A CallView function, And It's For Retrieving Whole Data With Wallet
- * @param args - Arguments Of Refund Function
- * @param {string} args[0] - Address Of User
+ * @param {string} sender - Address Of User
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
 module.exports.retrieveWholeDataWithWallet = async (sender) => callViewFunction('retrieveWholeDataWithPassword',
@@ -85,7 +84,7 @@ module.exports.retrieveWholeDataWithWallet = async (sender) => callViewFunction(
 //   pass_phrase: String,
 /**
  * @function - A CallView function, And It's For Checking Auth
- * @param args - Arguments Of Refund Function
+ * @param args - Arguments Of checkAuth Function
  * @param {string} args[0] - Address Of User
  * @param {string} args[1] - Address of Provider
  * @param {string} args[2] - token
