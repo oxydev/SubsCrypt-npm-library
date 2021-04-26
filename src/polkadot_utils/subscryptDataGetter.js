@@ -6,7 +6,7 @@ const { callViewFunction } = require('./interact');
 /**
  * @function - A CallView function, And It's For Getting Plan Data
  * @param args - Arguments Of Refund Function
- * @param {string} args[0] - AccountId
+ * @param {string} args[0] - Address of Provider
  * @param {number} args[1] - plan_index
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
@@ -20,7 +20,7 @@ module.exports.getPlanData = async (...args) => callViewFunction('getPlanData',
  * @function - A CallView function, And It's For Checking Subscription
  * @param args - Arguments Of Refund Function
  * @param {string} args[0] - Address Of User
- * @param {string} args[1] - provider_address
+ * @param {string} args[1] - Address of Provider
  * @param {number} args[2] - plan_index
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
@@ -49,7 +49,7 @@ module.exports.retrieveWholeDataWithPassword = async (...args) => callViewFuncti
  * @function - A CallView function, And It's For Retrieving Data With Password
  * @param args - Arguments Of Refund Function
  * @param {string} args[0] - Address Of User
- * @param {string} args[1] - provider_address
+ * @param {string} args[1] - Address of Provider
  * @param {string} args[2] - token
  * @param {string} args[3] - phrase
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
@@ -63,7 +63,7 @@ module.exports.retrieveDataWithPassword = async (...args) => callViewFunction('r
  * @function - A CallView function, And It's For Retrieving Data With Wallet
  * @param args - Arguments Of Refund Function
  * @param {string} args[0] - Address Of User
- * @param {string} args[1] - provider_address
+ * @param {string} args[1] - Address of Provider
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
 module.exports.retrieveDataWithWallet = async (sender, ...args) => callViewFunction('retrieveDataWithWallet',
@@ -87,7 +87,7 @@ module.exports.retrieveWholeDataWithWallet = async (sender) => callViewFunction(
  * @function - A CallView function, And It's For Checking Auth
  * @param args - Arguments Of Refund Function
  * @param {string} args[0] - Address Of User
- * @param {string} args[1] - provider_address
+ * @param {string} args[1] - Address of Provider
  * @param {string} args[2] - token
  * @param {string} args[3] - pass_phrase
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
