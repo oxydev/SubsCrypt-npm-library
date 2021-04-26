@@ -2,7 +2,8 @@
   "name": "subscrypt",
   "main": "src/index.js",
   "version": "0.0.2",
-  "author": "Saber Zafarpoor <szafarpoor@ce.sharif.edu> (https://github.com/saberdotcoder)",
+  "author": "Saber Zafarpoor <szafarpoor@ce.sharif.edu> (https://github.com/saberdotcoder), Sepehr Kianian <sepehrkianian09@yahoo.com> (https://github.com/sepehrkianian09)",
+
   "license": "Apache-2.0",
   "repository": "https://github.com/oxydev/SubsCrypt-npm-library/",
   "scripts": {
