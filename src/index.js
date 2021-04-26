@@ -1,5 +1,10 @@
 const metaData = require('./polkadot_utils/configs/metadata');
 const {
+  getWalletAccounts,
+  getWalletAccess,
+  getInjector,
+} = require('./polkadot_utils/getWalletAccess');
+const {
   setSubscryptPass, refund,
   withdraw,
   subscribe,
@@ -31,4 +36,7 @@ module.exports = {
   editPlan,
   addPlan,
   providerRegister,
+  getWalletAccounts,
+  getWalletAccess,
+  getInjector,
 };

@@ -3,7 +3,6 @@
   "main": "src/index.js",
   "version": "0.0.2",
   "author": "Saber Zafarpoor <szafarpoor@ce.sharif.edu> (https://github.com/saberdotcoder), Sepehr Kianian <sepehrkianian09@yahoo.com> (https://github.com/sepehrkianian09)",
-
   "license": "Apache-2.0",
   "repository": "https://github.com/oxydev/SubsCrypt-npm-library/",
   "scripts": {
@@ -11,7 +10,8 @@
   },
   "dependencies": {
     "@polkadot/api": "^4.6.2",
-    "@polkadot/api-contract": "^4.6.2"
+    "@polkadot/api-contract": "^4.6.2",
+    "@polkadot/extension-dapp": "0.37.3-17"
   },
   "devDependencies": {
     "chai": "4.3.4",
