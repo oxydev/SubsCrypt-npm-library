@@ -12,10 +12,14 @@ const {
   editPlan,
   addPlan,
   providerRegister,
+  setPassHashOfUserForEachProvider,
+  renew,
 } = require('./polkadot_utils/subscryptSetFunctions');
 const {
-  getPlanData, checkSubscription, retrieveWholeDataWithPassword, retrieveDataWithPassword,
-  retrieveDataWithWallet, checkAuth,
+  checkAuthWithUsername, providerCheckAuthWithUsername,
+  providerCheckAuth,
+  checkAuth, getPlanData, userCheckAuthWithUsername, checkSubscriptionWithUsername, checkSubscription, retrieveWholeDataWithUsername, retrieveDataWithUsername,
+  retrieveDataWithWallet, userCheckAuth,
 } = require('./polkadot_utils/subscryptDataGetter');
 const contract = require('./polkadot_utils/api').getContract();
 
@@ -24,11 +28,17 @@ module.exports = {
   contract,
   getPlanData,
   checkSubscription,
-  retrieveWholeDataWithPassword,
+  checkSubscriptionWithUsername,
+  retrieveWholeDataWithUsername,
   setSubscryptPass,
-  retrieveDataWithPassword,
+  retrieveDataWithUsername,
   retrieveDataWithWallet,
+  userCheckAuth,
+  checkAuthWithUsername,
   checkAuth,
+  userCheckAuthWithUsername,
+  providerCheckAuthWithUsername,
+  providerCheckAuth,
   refund,
   withdraw,
   subscribe,
@@ -39,4 +49,6 @@ module.exports = {
   getWalletAccounts,
   getWalletAccess,
   getInjector,
+  setPassHashOfUserForEachProvider,
+  renew,
 };
