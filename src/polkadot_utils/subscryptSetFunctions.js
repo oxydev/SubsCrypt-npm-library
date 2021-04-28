@@ -11,6 +11,20 @@ const { sendFunction } = require('./interact');
  */
 module.exports.setSubscryptPass = async (address, injector, ...args) => sendFunction('setSubscryptPass', address, injector, 0, ...args);
 
+// provider_address: AccountId
+// and sth in this format => '0x1cc7f105fdcf2a8067d1bb6e2dcb045c22d84a04733e2b11d90e26230854fd42'
+
+/**
+ * @function - A Send function, And It Sets The password hash of user in each plan
+ * @param {string} address - Address Of Sender
+ * @param {string} injector - Object That Signs Tx
+ * @param args - Arguments Of The Function
+ * @param {string} args[0] - Address of Provider
+ * @param {string} args[1] - new pass hash
+ * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
+ */
+module.exports.setPassHashOfUserForEachProvider = async (address, injector, ...args) => sendFunction('setPassHashOfUserForEachProvider', address, injector, 0, ...args);
+
 // provider_address: AccountId, plan_index: u128
 /**
  * @function - A Send function, And It's For Refunding
@@ -23,6 +37,18 @@ module.exports.setSubscryptPass = async (address, injector, ...args) => sendFunc
  */
 module.exports.refund = async (address, injector, ...args) => sendFunction('refund', address, injector, 0, ...args);
 
+// provider_address: AccountId, plan_index: u128
+/**
+ * @function - A Send function, And It's For renewing subscription
+ * @param {string} address - Address Of Sender
+ * @param {string} injector - Object That Signs Tx
+ * @param args - Arguments Of The Function
+ * @param {string} args[0] - Address of Provider
+ * @param {number} args[1] - plan_index
+ * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
+ */
+module.exports.renew = async (address, injector, ...args) => sendFunction('renew', address, injector, 0, ...args);
+
 // no args
 /**
  * @function - A Send function, And It's For Withdrawal
@@ -32,9 +58,10 @@ module.exports.refund = async (address, injector, ...args) => sendFunction('refu
  */
 module.exports.withdraw = async (address, injector) => sendFunction('withdraw', address, injector, 0);
 
-//  provider_address: AccountId,
+//             provider_address: AccountId,
 //             plan_index: u128,
-//             pass: '0x1cc7f105fdcf2a8067d1bb6e2dcb045c22d84a04733e2b11d90e26230854fd42'
+//             pass hash: '0x1cc7f105fdcf2a8067d1bb6e2dcb045c22d84a04733e2b11d90e26230854fd42'
+//             username: String,
 //             metadata: String,
 /**
  * @function - A Send function, And It's For Subscription
@@ -44,8 +71,9 @@ module.exports.withdraw = async (address, injector) => sendFunction('withdraw', 
  * @param args - Arguments Of The Function
  * @param {string} args[0] - AccountId
  * @param {number} args[1] - plan_index
- * @param {string} args[2] - password
- * @param {string} args[3] - metadata
+ * @param {string} args[2] - password hash
+ * @param {string} args[3] - username
+ * @param {string} args[4] - metadata
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
 module.exports.subscribe = async (address, injector, value, ...args) => sendFunction('subscribe', address, injector, value, ...args);
@@ -104,6 +132,8 @@ module.exports.addPlan = async (address, injector, ...args) => sendFunction('add
 //   prices: Vec<u128>,
 //   max_refund_permille_policies: Vec<u128>,
 //   address: AccountId,
+//   username: String,
+//   subscrypt_pass_hash: [u8; 32],
 /**
  * @function - A Send function, And It's For Providing Register
  * @param {string} address - Address Of Sender
@@ -114,6 +144,8 @@ module.exports.addPlan = async (address, injector, ...args) => sendFunction('add
  * @param {number[]} args[2] - prices
  * @param {number[]} args[3] - max_refund_permille_policies
  * @param {string} args[4] - Address of money wallet of Provider
+ * @param {String} args[3] - username
+ * @param {string} args[4] - subscrypt_pass_hash
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
 module.exports.providerRegister = async (address, injector, ...args) => sendFunction('providerRegister', address, injector, 100, ...args);

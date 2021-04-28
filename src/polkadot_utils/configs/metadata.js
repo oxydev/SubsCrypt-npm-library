@@ -1,7 +1,7 @@
 const metaData = {
   metadataVersion: '0.1.0',
   source: {
-    hash: '0x0a9ea64ca19490416ae992f1bfc4921a08dc0d754b91bc81a6141a39d26efb07',
+    hash: '0x23791eb297685dc7e3234d34bdb23c754d2e1d19939e79368c9339c551924267',
     language: 'ink! 3.0.0-rc3',
     compiler: 'rustc 1.53.0-nightly',
   },
@@ -114,6 +114,28 @@ const metaData = {
               type: 2,
             },
           },
+          {
+            docs: [],
+            indexed: false,
+            name: 'subscription_time',
+            type: {
+              displayName: [
+                'u64',
+              ],
+              type: 1,
+            },
+          },
+          {
+            docs: [],
+            indexed: false,
+            name: 'duration',
+            type: {
+              displayName: [
+                'u64',
+              ],
+              type: 1,
+            },
+          },
         ],
         docs: [],
         name: 'SubscribeEvent',
@@ -128,7 +150,7 @@ const metaData = {
               displayName: [
                 'Vec',
               ],
-              type: 33,
+              type: 36,
             },
           },
           {
@@ -137,7 +159,7 @@ const metaData = {
               displayName: [
                 'Vec',
               ],
-              type: 34,
+              type: 37,
             },
           },
           {
@@ -146,7 +168,7 @@ const metaData = {
               displayName: [
                 'Vec',
               ],
-              type: 34,
+              type: 37,
             },
           },
           {
@@ -155,7 +177,7 @@ const metaData = {
               displayName: [
                 'Vec',
               ],
-              type: 34,
+              type: 37,
             },
           },
           {
@@ -165,6 +187,22 @@ const metaData = {
                 'AccountId',
               ],
               type: 6,
+            },
+          },
+          {
+            name: 'username',
+            type: {
+              displayName: [
+                'String',
+              ],
+              type: 29,
+            },
+          },
+          {
+            name: 'subscrypt_pass_hash',
+            type: {
+              displayName: [],
+              type: 7,
             },
           },
         ],
@@ -196,7 +234,7 @@ const metaData = {
               displayName: [
                 'Vec',
               ],
-              type: 33,
+              type: 36,
             },
           },
           {
@@ -205,7 +243,7 @@ const metaData = {
               displayName: [
                 'Vec',
               ],
-              type: 34,
+              type: 37,
             },
           },
           {
@@ -214,7 +252,7 @@ const metaData = {
               displayName: [
                 'Vec',
               ],
-              type: 34,
+              type: 37,
             },
           },
           {
@@ -223,7 +261,7 @@ const metaData = {
               displayName: [
                 'Vec',
               ],
-              type: 34,
+              type: 37,
             },
           },
         ],
@@ -387,6 +425,15 @@ const metaData = {
             },
           },
           {
+            name: 'username',
+            type: {
+              displayName: [
+                'String',
+              ],
+              type: 29,
+            },
+          },
+          {
             name: 'metadata',
             type: {
               displayName: [
@@ -404,7 +451,7 @@ const metaData = {
           '',
           ' # Note',
           '',
-          " The `subs_crypt_pass_hash` will only be set if it's the first subscription of the `caller` to the `SubsCrypt` platform",
+          " The `subscrypt_pass_hash` will only be set if it's the first subscription of the `caller` to the `SubsCrypt` platform",
           ' `caller` can not subscribe to same `plan_index` of the same `provider_address` but',
           ' it can subscribe to different `plan_index` of same `provider_address` .',
           " This line of code checks that if you previously subscribed to `provider_address` and if it's the first time",
@@ -433,6 +480,36 @@ const metaData = {
       {
         args: [
           {
+            name: 'provider_address',
+            type: {
+              displayName: [
+                'AccountId',
+              ],
+              type: 6,
+            },
+          },
+          {
+            name: 'plan_index',
+            type: {
+              displayName: [
+                'u128',
+              ],
+              type: 2,
+            },
+          },
+        ],
+        docs: [],
+        mutates: true,
+        name: [
+          'renew',
+        ],
+        payable: true,
+        returnType: null,
+        selector: '0xb5604092',
+      },
+      {
+        args: [
+          {
             name: 'pass',
             type: {
               displayName: [],
@@ -441,11 +518,11 @@ const metaData = {
           },
         ],
         docs: [
-          ' Setting the `subs_crypt_pass_hash` of caller to `pass`',
+          ' Setting the `subscrypt_pass_hash` of caller to `pass`',
           '',
           ' # Note',
           '',
-          ' The `subs_crypt_pass_hash` will also be set in `subscribe` function in first subscription',
+          ' The `subscrypt_pass_hash` will also be set in `subscribe` function in first subscription',
           '',
           '',
           ' # Panics',
@@ -458,6 +535,39 @@ const metaData = {
         payable: false,
         returnType: null,
         selector: '0x75d99b9e',
+      },
+      {
+        args: [
+          {
+            name: 'provider_address',
+            type: {
+              displayName: [
+                'AccountId',
+              ],
+              type: 6,
+            },
+          },
+          {
+            name: 'pass',
+            type: {
+              displayName: [],
+              type: 7,
+            },
+          },
+        ],
+        docs: [
+          ' Setting the `subscrypt_pass_hash_for_each_provider` of caller to `pass`',
+          '',
+          ' # Panics',
+          ' If `caller` does not exist in `providers`',
+        ],
+        mutates: true,
+        name: [
+          'set_pass_hash_of_user_for_each_provider',
+        ],
+        payable: false,
+        returnType: null,
+        selector: '0xf9b197d0',
       },
       {
         args: [],
@@ -564,15 +674,6 @@ const metaData = {
             },
           },
           {
-            name: 'token',
-            type: {
-              displayName: [
-                'String',
-              ],
-              type: 29,
-            },
-          },
-          {
             name: 'pass_phrase',
             type: {
               displayName: [
@@ -609,6 +710,130 @@ const metaData = {
       {
         args: [
           {
+            name: 'username',
+            type: {
+              displayName: [
+                'String',
+              ],
+              type: 29,
+            },
+          },
+          {
+            name: 'provider',
+            type: {
+              displayName: [
+                'AccountId',
+              ],
+              type: 6,
+            },
+          },
+          {
+            name: 'pass_phrase',
+            type: {
+              displayName: [
+                'String',
+              ],
+              type: 29,
+            },
+          },
+        ],
+        docs: [
+          ' This function indicate if `username` can authenticate with given `pass_phrase`',
+          ' # Note',
+          ' `user` are encouraged to have different `token` and `pass_phrase` for each provider',
+          '',
+          ' # Returns',
+          ' `bool` is returned which shows the correctness of auth',
+          '',
+          ' # Example',
+          ' Examples in `check_auth_works` in `tests/test.rs`',
+        ],
+        mutates: false,
+        name: [
+          'check_auth_with_username',
+        ],
+        payable: false,
+        returnType: {
+          displayName: [
+            'bool',
+          ],
+          type: 14,
+        },
+        selector: '0x7724e310',
+      },
+      {
+        args: [
+          {
+            name: 'provider',
+            type: {
+              displayName: [
+                'AccountId',
+              ],
+              type: 6,
+            },
+          },
+          {
+            name: 'pass_phrase',
+            type: {
+              displayName: [
+                'String',
+              ],
+              type: 29,
+            },
+          },
+        ],
+        docs: [],
+        mutates: false,
+        name: [
+          'provider_check_auth',
+        ],
+        payable: false,
+        returnType: {
+          displayName: [
+            'bool',
+          ],
+          type: 14,
+        },
+        selector: '0xaad0d59f',
+      },
+      {
+        args: [
+          {
+            name: 'username',
+            type: {
+              displayName: [
+                'String',
+              ],
+              type: 29,
+            },
+          },
+          {
+            name: 'pass_phrase',
+            type: {
+              displayName: [
+                'String',
+              ],
+              type: 29,
+            },
+          },
+        ],
+        docs: [],
+        mutates: false,
+        name: [
+          'provider_check_auth_with_username',
+        ],
+        payable: false,
+        returnType: {
+          displayName: [
+            'bool',
+          ],
+          type: 14,
+        },
+        selector: '0x7a8cb4c4',
+      },
+      {
+        args: [
+          {
             name: 'user',
             type: {
               displayName: [
@@ -618,7 +843,68 @@ const metaData = {
             },
           },
           {
-            name: 'token',
+            name: 'pass_phrase',
+            type: {
+              displayName: [
+                'String',
+              ],
+              type: 29,
+            },
+          },
+        ],
+        docs: [],
+        mutates: false,
+        name: [
+          'user_check_auth',
+        ],
+        payable: false,
+        returnType: {
+          displayName: [
+            'bool',
+          ],
+          type: 14,
+        },
+        selector: '0x15a558e5',
+      },
+      {
+        args: [
+          {
+            name: 'username',
+            type: {
+              displayName: [
+                'String',
+              ],
+              type: 29,
+            },
+          },
+          {
+            name: 'pass_phrase',
+            type: {
+              displayName: [
+                'String',
+              ],
+              type: 29,
+            },
+          },
+        ],
+        docs: [],
+        mutates: false,
+        name: [
+          'user_check_auth_with_username',
+        ],
+        payable: false,
+        returnType: {
+          displayName: [
+            'bool',
+          ],
+          type: 14,
+        },
+        selector: '0x68f97e10',
+      },
+      {
+        args: [
+          {
+            name: 'username',
             type: {
               displayName: [
                 'String',
@@ -651,7 +937,7 @@ const metaData = {
         ],
         mutates: false,
         name: [
-          'retrieve_whole_data_with_password',
+          'retrieve_whole_data_with_username',
         ],
         payable: false,
         returnType: {
@@ -660,7 +946,7 @@ const metaData = {
           ],
           type: 27,
         },
-        selector: '0xcf9b0705',
+        selector: '0x870b7596',
       },
       {
         args: [],
@@ -690,12 +976,12 @@ const metaData = {
       {
         args: [
           {
-            name: 'user',
+            name: 'username',
             type: {
               displayName: [
-                'AccountId',
+                'String',
               ],
-              type: 6,
+              type: 29,
             },
           },
           {
@@ -705,15 +991,6 @@ const metaData = {
                 'AccountId',
               ],
               type: 6,
-            },
-          },
-          {
-            name: 'token',
-            type: {
-              displayName: [
-                'String',
-              ],
-              type: 29,
             },
           },
           {
@@ -741,7 +1018,7 @@ const metaData = {
         ],
         mutates: false,
         name: [
-          'retrieve_data_with_password',
+          'retrieve_data_with_username',
         ],
         payable: false,
         returnType: {
@@ -750,7 +1027,7 @@ const metaData = {
           ],
           type: 27,
         },
-        selector: '0xd17f8423',
+        selector: '0x82afbba9',
       },
       {
         args: [
@@ -808,9 +1085,7 @@ const metaData = {
             },
           },
         ],
-        docs: [
-          ' This function can be called to get plan data',
-        ],
+        docs: [],
         mutates: false,
         name: [
           'get_plan_data',
@@ -823,6 +1098,30 @@ const metaData = {
           type: 13,
         },
         selector: '0x1191b42c',
+      },
+      {
+        args: [
+          {
+            name: 'string',
+            type: {
+              displayName: [
+                'String',
+              ],
+              type: 29,
+            },
+          },
+        ],
+        docs: [],
+        mutates: false,
+        name: [
+          'get_sha2',
+        ],
+        payable: false,
+        returnType: {
+          displayName: [],
+          type: 7,
+        },
+        selector: '0x30be6595',
       },
       {
         args: [
@@ -879,6 +1178,50 @@ const metaData = {
           type: 14,
         },
         selector: '0x080e491f',
+      },
+      {
+        args: [
+          {
+            name: 'username',
+            type: {
+              displayName: [
+                'String',
+              ],
+              type: 29,
+            },
+          },
+          {
+            name: 'provider_address',
+            type: {
+              displayName: [
+                'AccountId',
+              ],
+              type: 6,
+            },
+          },
+          {
+            name: 'plan_index',
+            type: {
+              displayName: [
+                'u128',
+              ],
+              type: 2,
+            },
+          },
+        ],
+        docs: [],
+        mutates: false,
+        name: [
+          'check_subscription_with_username',
+        ],
+        payable: false,
+        returnType: {
+          displayName: [
+            'bool',
+          ],
+          type: 14,
+        },
+        selector: '0xa872aeb9',
       },
     ],
   },
@@ -1303,6 +1646,166 @@ const metaData = {
           },
           name: 'plan_index_to_record_index',
         },
+        {
+          layout: {
+            struct: {
+              fields: [
+                {
+                  layout: {
+                    struct: {
+                      fields: [
+                        {
+                          layout: {
+                            cell: {
+                              key: '0x0c00000005000000000000000000000000000000000000000000000000000000',
+                              ty: 3,
+                            },
+                          },
+                          name: 'header',
+                        },
+                        {
+                          layout: {
+                            struct: {
+                              fields: [
+                                {
+                                  layout: {
+                                    cell: {
+                                      key: '0x0d00000005000000000000000000000000000000000000000000000000000000',
+                                      ty: 4,
+                                    },
+                                  },
+                                  name: 'len',
+                                },
+                                {
+                                  layout: {
+                                    array: {
+                                      cellsPerElem: 1,
+                                      layout: {
+                                        cell: {
+                                          key: '0x0d00000006000000000000000000000000000000000000000000000000000000',
+                                          ty: 33,
+                                        },
+                                      },
+                                      len: 4294967295,
+                                      offset: '0x0e00000005000000000000000000000000000000000000000000000000000000',
+                                    },
+                                  },
+                                  name: 'elems',
+                                },
+                              ],
+                            },
+                          },
+                          name: 'entries',
+                        },
+                      ],
+                    },
+                  },
+                  name: 'keys',
+                },
+                {
+                  layout: {
+                    hash: {
+                      layout: {
+                        cell: {
+                          key: '0x0e00000006000000000000000000000000000000000000000000000000000000',
+                          ty: 34,
+                        },
+                      },
+                      offset: '0x0d00000006000000000000000000000000000000000000000000000000000000',
+                      strategy: {
+                        hasher: 'Blake2x256',
+                        postfix: '',
+                        prefix: '0x696e6b20686173686d6170',
+                      },
+                    },
+                  },
+                  name: 'values',
+                },
+              ],
+            },
+          },
+          name: 'username_to_address',
+        },
+        {
+          layout: {
+            struct: {
+              fields: [
+                {
+                  layout: {
+                    struct: {
+                      fields: [
+                        {
+                          layout: {
+                            cell: {
+                              key: '0x0e00000006000000000000000000000000000000000000000000000000000000',
+                              ty: 3,
+                            },
+                          },
+                          name: 'header',
+                        },
+                        {
+                          layout: {
+                            struct: {
+                              fields: [
+                                {
+                                  layout: {
+                                    cell: {
+                                      key: '0x0f00000006000000000000000000000000000000000000000000000000000000',
+                                      ty: 4,
+                                    },
+                                  },
+                                  name: 'len',
+                                },
+                                {
+                                  layout: {
+                                    array: {
+                                      cellsPerElem: 1,
+                                      layout: {
+                                        cell: {
+                                          key: '0x0f00000007000000000000000000000000000000000000000000000000000000',
+                                          ty: 5,
+                                        },
+                                      },
+                                      len: 4294967295,
+                                      offset: '0x1000000006000000000000000000000000000000000000000000000000000000',
+                                    },
+                                  },
+                                  name: 'elems',
+                                },
+                              ],
+                            },
+                          },
+                          name: 'entries',
+                        },
+                      ],
+                    },
+                  },
+                  name: 'keys',
+                },
+                {
+                  layout: {
+                    hash: {
+                      layout: {
+                        cell: {
+                          key: '0x1000000007000000000000000000000000000000000000000000000000000000',
+                          ty: 35,
+                        },
+                      },
+                      offset: '0x0f00000007000000000000000000000000000000000000000000000000000000',
+                      strategy: {
+                        hasher: 'Blake2x256',
+                        postfix: '',
+                        prefix: '0x696e6b20686173686d6170',
+                      },
+                    },
+                  },
+                  name: 'values',
+                },
+              ],
+            },
+          },
+          name: 'address_to_username',
+        },
       ],
     },
   },
@@ -1486,6 +1989,11 @@ const metaData = {
               type: 15,
               typeName: 'LinkedList',
             },
+            {
+              name: 'subscrypt_pass_hash',
+              type: 7,
+              typeName: '[u8; 32]',
+            },
           ],
         },
       },
@@ -1610,7 +2118,7 @@ const metaData = {
               typeName: 'Vec<AccountId>',
             },
             {
-              name: 'subs_crypt_pass_hash',
+              name: 'subscrypt_pass_hash',
               type: 7,
               typeName: '[u8; 32]',
             },
@@ -1934,6 +2442,95 @@ const metaData = {
       },
       params: [
         2,
+      ],
+      path: [
+        'ink_storage',
+        'collections',
+        'hashmap',
+        'ValueEntry',
+      ],
+    },
+    {
+      def: {
+        variant: {
+          variants: [
+            {
+              fields: [
+                {
+                  type: 9,
+                  typeName: 'VacantEntry',
+                },
+              ],
+              name: 'Vacant',
+            },
+            {
+              fields: [
+                {
+                  type: 29,
+                  typeName: 'T',
+                },
+              ],
+              name: 'Occupied',
+            },
+          ],
+        },
+      },
+      params: [
+        29,
+      ],
+      path: [
+        'ink_storage',
+        'collections',
+        'stash',
+        'Entry',
+      ],
+    },
+    {
+      def: {
+        composite: {
+          fields: [
+            {
+              name: 'value',
+              type: 6,
+              typeName: 'V',
+            },
+            {
+              name: 'key_index',
+              type: 4,
+              typeName: 'KeyIndex',
+            },
+          ],
+        },
+      },
+      params: [
+        6,
+      ],
+      path: [
+        'ink_storage',
+        'collections',
+        'hashmap',
+        'ValueEntry',
+      ],
+    },
+    {
+      def: {
+        composite: {
+          fields: [
+            {
+              name: 'value',
+              type: 29,
+              typeName: 'V',
+            },
+            {
+              name: 'key_index',
+              type: 4,
+              typeName: 'KeyIndex',
+            },
+          ],
+        },
+      },
+      params: [
+        29,
       ],
       path: [
         'ink_storage',
