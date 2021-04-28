@@ -1,7 +1,7 @@
 const metaData = {
   metadataVersion: '0.1.0',
   source: {
-    hash: '0x7c0d9076956261460287721af223330a06a4a1e1f86fd866b8037b377266ac70',
+    hash: '0x23791eb297685dc7e3234d34bdb23c754d2e1d19939e79368c9339c551924267',
     language: 'ink! 3.0.0-rc3',
     compiler: 'rustc 1.53.0-nightly',
   },
@@ -1098,6 +1098,30 @@ const metaData = {
           type: 13,
         },
         selector: '0x1191b42c',
+      },
+      {
+        args: [
+          {
+            name: 'string',
+            type: {
+              displayName: [
+                'String',
+              ],
+              type: 29,
+            },
+          },
+        ],
+        docs: [],
+        mutates: false,
+        name: [
+          'get_sha2',
+        ],
+        payable: false,
+        returnType: {
+          displayName: [],
+          type: 7,
+        },
+        selector: '0x30be6595',
       },
       {
         args: [

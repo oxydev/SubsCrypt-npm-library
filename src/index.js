@@ -16,6 +16,7 @@ const {
   renew,
 } = require('./polkadot_utils/subscryptSetFunctions');
 const {
+  getSha2, retrieveWholeDataWithWallet,
   checkAuthWithUsername, providerCheckAuthWithUsername,
   providerCheckAuth,
   checkAuth, getPlanData, userCheckAuthWithUsername, checkSubscriptionWithUsername, checkSubscription, retrieveWholeDataWithUsername, retrieveDataWithUsername,
@@ -51,4 +52,6 @@ module.exports = {
   getInjector,
   setPassHashOfUserForEachProvider,
   renew,
+  getSha2,
+  retrieveWholeDataWithWallet,
 };

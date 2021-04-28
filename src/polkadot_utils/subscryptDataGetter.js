@@ -8,6 +8,17 @@ const { callViewFunction } = require('./interact');
  * @param {string} args[0] - Address of Provider
  * @param {number} args[1] - plan_index
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
+ *
+{
+  "status": "Fetched",
+  "result": {
+  "duration": "20,000,000",
+    "active_session_limit": "1",
+    "price": "1,000",
+    "max_refund_permille_policy": "100",
+    "disabled": false
+  }
+}
  */
 module.exports.getPlanData = async (...args) => callViewFunction('getPlanData',
   '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
@@ -22,6 +33,10 @@ module.exports.getPlanData = async (...args) => callViewFunction('getPlanData',
  * @param {string} args[1] - Address of Provider
  * @param {number} args[2] - plan_index
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
+{
+  "status": "Fetched",
+  "result": false
+}
  */
 module.exports.checkSubscription = async (...args) => callViewFunction('checkSubscription',
   '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
@@ -36,6 +51,10 @@ module.exports.checkSubscription = async (...args) => callViewFunction('checkSub
  * @param {string} args[1] - Address of Provider
  * @param {number} args[2] - plan_index
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
+{
+  "status": "Fetched",
+  "result": false
+}
  */
 module.exports.checkSubscriptionWithUsername = async (...args) => callViewFunction('checkSubscriptionWithUsername',
   '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
@@ -48,6 +67,25 @@ module.exports.checkSubscriptionWithUsername = async (...args) => callViewFuncti
  * @param {string} args[0] - Username
  * @param {string} args[1] - password
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
+ {
+  "status": "Fetched",
+  "result": [
+    {
+      "provider": "5Dyu5YxLufavjPg8vP31BhKs5xz8ncdkQcNdGwf5XtW4C9Ym",
+      "plan": {
+        "duration": "40,000,000",
+        "active_session_limit": "1",
+        "price": "2,000",
+        "max_refund_permille_policy": "200",
+        "disabled": false
+      },
+      "plan_index": "1",
+      "subscription_time": "1,619,631,732,000",
+      "meta_data_encrypted": "shit",
+      "refunded": false
+    }
+  ]
+}
  */
 module.exports.retrieveWholeDataWithUsername = async (...args) => callViewFunction('retrieveWholeDataWithUsername',
   '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
@@ -62,6 +100,25 @@ module.exports.retrieveWholeDataWithUsername = async (...args) => callViewFuncti
  * @param {string} args[1] - Address of Provider
  * @param {string} args[2] - password
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
+ {
+  "status": "Fetched",
+  "result": [
+    {
+      "provider": "5Dyu5YxLufavjPg8vP31BhKs5xz8ncdkQcNdGwf5XtW4C9Ym",
+      "plan": {
+        "duration": "40,000,000",
+        "active_session_limit": "1",
+        "price": "2,000",
+        "max_refund_permille_policy": "200",
+        "disabled": false
+      },
+      "plan_index": "1",
+      "subscription_time": "1,619,631,732,000",
+      "meta_data_encrypted": "shit",
+      "refunded": false
+    }
+  ]
+}
  */
 module.exports.retrieveDataWithUsername = async (...args) => callViewFunction('retrieveDataWithUsername',
   '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
@@ -74,6 +131,25 @@ module.exports.retrieveDataWithUsername = async (...args) => callViewFunction('r
  * @param args - Arguments Of retrieveDataWithWallet Function
  * @param {string} args[0] - Address of Provider
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
+ {
+  "status": "Fetched",
+  "result": [
+    {
+      "provider": "5Dyu5YxLufavjPg8vP31BhKs5xz8ncdkQcNdGwf5XtW4C9Ym",
+      "plan": {
+        "duration": "40,000,000",
+        "active_session_limit": "1",
+        "price": "2,000",
+        "max_refund_permille_policy": "200",
+        "disabled": false
+      },
+      "plan_index": "1",
+      "subscription_time": "1,619,631,732,000",
+      "meta_data_encrypted": "shit",
+      "refunded": false
+    }
+  ]
+}
  */
 module.exports.retrieveDataWithWallet = async (sender, ...args) => callViewFunction('retrieveDataWithWallet',
   sender, ...args);
@@ -83,8 +159,27 @@ module.exports.retrieveDataWithWallet = async (sender, ...args) => callViewFunct
  * @function - A CallView function, And It's For Retrieving Whole Data With Wallet
  * @param {string} sender - Address Of User
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
+ {
+  "status": "Fetched",
+  "result": [
+    {
+      "provider": "5Dyu5YxLufavjPg8vP31BhKs5xz8ncdkQcNdGwf5XtW4C9Ym",
+      "plan": {
+        "duration": "40,000,000",
+        "active_session_limit": "1",
+        "price": "2,000",
+        "max_refund_permille_policy": "200",
+        "disabled": false
+      },
+      "plan_index": "1",
+      "subscription_time": "1,619,631,732,000",
+      "meta_data_encrypted": "shit",
+      "refunded": false
+    }
+  ]
+}
  */
-module.exports.retrieveWholeDataWithWallet = async (sender) => callViewFunction('retrieveWholeDataWithPassword',
+module.exports.retrieveWholeDataWithWallet = async (sender) => callViewFunction('retrieveWholeDataWithWallet',
   sender);
 
 //   user: AccountId,
@@ -95,6 +190,10 @@ module.exports.retrieveWholeDataWithWallet = async (sender) => callViewFunction(
  * @param {string} args[0] - Address Of User
  * @param {string} args[1] - pass_phrase
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
+ {
+  "status": "Fetched",
+  "result": true
+}
  */
 module.exports.userCheckAuth = async (...args) => callViewFunction('userCheckAuth',
   '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
@@ -107,6 +206,10 @@ module.exports.userCheckAuth = async (...args) => callViewFunction('userCheckAut
  * @param {string} args[0] - Address Of Provider
  * @param {string} args[1] - pass_phrase
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
+ {
+  "status": "Fetched",
+  "result": true
+}
  */
 module.exports.providerCheckAuth = async (...args) => callViewFunction('providerCheckAuth',
   '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
@@ -119,6 +222,10 @@ module.exports.providerCheckAuth = async (...args) => callViewFunction('provider
  * @param {string} args[0] - Username of provider
  * @param {string} args[1] - pass_phrase
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
+ {
+  "status": "Fetched",
+  "result": true
+}
  */
 module.exports.providerCheckAuthWithUsername = async (...args) => callViewFunction('providerCheckAuthWithUsername',
   '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
@@ -131,6 +238,10 @@ module.exports.providerCheckAuthWithUsername = async (...args) => callViewFuncti
  * @param {string} args[0] - Username
  * @param {string} args[1] - pass_phrase
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
+ {
+  "status": "Fetched",
+  "result": true
+}
  */
 module.exports.userCheckAuthWithUsername = async (...args) => callViewFunction('userCheckAuthWithUsername',
   '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
@@ -145,6 +256,10 @@ module.exports.userCheckAuthWithUsername = async (...args) => callViewFunction('
  * @param {string} args[1] - Address of Provider
  * @param {string} args[2] - pass_phrase
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
+ {
+  "status": "Fetched",
+  "result": true
+}
  */
 module.exports.checkAuth = async (...args) => callViewFunction('checkAuth',
   '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
@@ -155,10 +270,28 @@ module.exports.checkAuth = async (...args) => callViewFunction('checkAuth',
 /**
  * @function - A CallView function, And It's For Checking Auth of users in different providers using user and pass
  * @param args - Arguments Of checkAuthWithUsername Function
- * @param {string} args[0] - Address Of User
+ * @param {string} args[0] - username of user
  * @param {string} args[1] - Address of Provider
  * @param {string} args[2] - pass_phrase
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
+ {
+  "status": "Fetched",
+  "result": true
+}
  */
 module.exports.checkAuthWithUsername = async (...args) => callViewFunction('checkAuthWithUsername',
+  '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
+
+// pass: String,
+/**
+ * @function - A CallView function, And It's For getting sha2 of string
+ * @param args - Arguments Of getSha2 Function
+ * @param {string} args[0] - pass
+ * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
+ {
+  "status": "Fetched",
+  "result": "0xc73b7008f623d7ccf33cfbf4021f5d5c214b8cb76821048c1d79f0e4f53c281f"
+}
+ */
+module.exports.getSha2 = async (...args) => callViewFunction('getSha2',
   '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
