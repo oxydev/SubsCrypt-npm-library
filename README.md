@@ -1,7 +1,7 @@
 # SubsCrypt-npm-library
 <img src="https://oxydev.github.io/SubsCrypt-docs/images/logo2.png" width="500">
 
-[![npm](https://img.shields.io/npm/v/subscrypt.svg)]()
+[![npm](https://img.shields.io/npm/v/subscrypt.svg)](https://www.npmjs.com/package/subscrypt)
 [![Test](https://github.com/oxydev/SubsCrypt-npm-library/actions/workflows/node.js.yml/badge.svg)](https://github.com/oxydev/SubsCrypt-npm-library/actions/workflows/node.js.yml)
 
 # Import Package
