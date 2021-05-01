@@ -34,7 +34,7 @@ console.log(await subscrypt.retrieveWholeDataWithPassword('5Dyu5YxLufavjPg8vP31B
 More Samples will be added to the documents of project [here](https://oxydev.github.io/SubsCrypt-docs/#/).
 
 # Docs
-You can access the docs [here]('https://github.com/oxydev/SubsCrypt-npm-library/tree/main/docs')
+You can access the docs [here](https://github.com/oxydev/SubsCrypt-npm-library/tree/main/docs)
 # Important Note
 You have to ssh to our server which has a running [canvas node](https://github.com/paritytech/canvas-node) on it. However, if you don't have access to the server, please contact me to give you access:)
 ```
