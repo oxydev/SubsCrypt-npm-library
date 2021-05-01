@@ -19,6 +19,10 @@ You have to option right now, either you can use the latest version of code on r
 ```
 import subscrypt from 'subscrypt';
 ```
+or
+```
+const subscrypt = require('subscrypt');
+```
 Now you can easily use the SubsCrypt library to get data from blockchain. Below are some examples:
 ```
 console.log(await subscrypt.getPlanData('5Dyu5YxLufavjPg8vP31BhKs5xz8ncdkQcNdGwf5XtW4C9Ym', 2));
@@ -27,9 +31,10 @@ console.log(await subscrypt.checkSubscription('5Dyu5YxLufavjPg8vP31BhKs5xz8ncdkQ
 
 console.log(await subscrypt.retrieveWholeDataWithPassword('5Dyu5YxLufavjPg8vP31BhKs5xz8ncdkQcNdGwf5XtW4C9Ym',"token", "pass_phrase"));
 ```
-
 More Samples will be added to the documents of project [here](https://oxydev.github.io/SubsCrypt-docs/#/).
 
+# Docs
+You can access the docs [here]('https://github.com/oxydev/SubsCrypt-npm-library/tree/main/docs')
 # Important Note
 You have to ssh to our server which has a running [canvas node](https://github.com/paritytech/canvas-node) on it. However, if you don't have access to the server, please contact me to give you access:)
 ```
