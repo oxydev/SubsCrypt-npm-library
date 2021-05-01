@@ -1,297 +1,260 @@
 const { callViewFunction } = require('./interact');
-
-//  provider_address: AccountId,
-//  plan_index: u128
 /**
- * @function - A CallView function, And It's For Getting Plan Data
- * @param args - Arguments Of getPlanData Function
- * @param {string} args[0] - Address of Provider
- * @param {number} args[1] - plan_index
- * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
- *
-{
-  "status": "Fetched",
-  "result": {
-  "duration": "20,000,000",
-    "active_session_limit": "1",
-    "price": "1,000",
-    "max_refund_permille_policy": "100",
-    "disabled": false
-  }
-}
+ * @typedef PlanConst
+ * @property {number} duration
+ * @property {number} price
+ * @property {number} max_refund_permille
+ * @property {bool} disabled
  */
-module.exports.getPlanData = async (...args) => callViewFunction('getPlanData',
-  '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
 
-//  user: AccountId,
-//  provider_address: AccountId,
-//  plan_index: u128
 /**
- * @function - A CallView function, And It's For Checking Subscription
- * @param args - Arguments Of checkSubscription Function
- * @param {string} args[0] - Address Of User
- * @param {string} args[1] - Address of Provider
- * @param {number} args[2] - plan_index
- * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
-{
-  "status": "Fetched",
-  "result": false
-}
+ * @typedef SubscriptionRecord
+ * @property {string} provider
+ * @property {PlanConst} plan
+ * @property {number} plan_index
+ * @property {number} subscription_time
+ * @property {string[]} characteristics_values_encrypted
+ * @property {bool} refunded
  */
-module.exports.checkSubscription = async (...args) => callViewFunction('checkSubscription',
-  '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
 
-//  username: String,
-//  provider_address: AccountId,
-//  plan_index: u128
 /**
- * @function - A CallView function, And It's For Checking Subscription
- * @param args - Arguments Of checkSubscriptionWithUsername Function
- * @param {string} args[0] - Username
- * @param {string} args[1] - Address of Provider
- * @param {number} args[2] - plan_index
- * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
-{
-  "status": "Fetched",
-  "result": false
-}
+ * @typedef Failed
+ * @property {string} status Status of request("Failed") in this case
+ * @property {*} result Debug Data
  */
-module.exports.checkSubscriptionWithUsername = async (...args) => callViewFunction('checkSubscriptionWithUsername',
-  '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
 
-// username: String,
-//             password: String,
 /**
- * @function - A CallView function, And It's For Retrieving Whole Data With Password
- * @param args - Arguments Of retrieveWholeDataWithUsername Function
- * @param {string} args[0] - Username
- * @param {string} args[1] - password
- * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
- {
-  "status": "Fetched",
-  "result": [
-    {
-      "provider": "5Dyu5YxLufavjPg8vP31BhKs5xz8ncdkQcNdGwf5XtW4C9Ym",
-      "plan": {
-        "duration": "40,000,000",
-        "active_session_limit": "1",
-        "price": "2,000",
-        "max_refund_permille_policy": "200",
-        "disabled": false
-      },
-      "plan_index": "1",
-      "subscription_time": "1,619,631,732,000",
-      "meta_data_encrypted": "shit",
-      "refunded": false
-    }
-  ]
-}
+ * @typedef PlanFetched
+ * @property {string} status Status of request("Fetched") in this case
+ * @property {PlanConst} result Plan Const data
  */
-module.exports.retrieveWholeDataWithUsername = async (...args) => callViewFunction('retrieveWholeDataWithUsername',
-  '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
 
-// username: String,
-//   provider_address: AccountId,
-//   phrase: String,
 /**
- * @function - A CallView function, And It's For Retrieving Data With Password
- * @param args - Arguments Of retrieveDataWithUsername Function
- * @param {string} args[0] - Username
- * @param {string} args[1] - Address of Provider
- * @param {string} args[2] - password
- * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
- {
-  "status": "Fetched",
-  "result": [
-    {
-      "provider": "5Dyu5YxLufavjPg8vP31BhKs5xz8ncdkQcNdGwf5XtW4C9Ym",
-      "plan": {
-        "duration": "40,000,000",
-        "active_session_limit": "1",
-        "price": "2,000",
-        "max_refund_permille_policy": "200",
-        "disabled": false
-      },
-      "plan_index": "1",
-      "subscription_time": "1,619,631,732,000",
-      "meta_data_encrypted": "shit",
-      "refunded": false
-    }
-  ]
-}
+ * @typedef CharacteristicsFetched
+ * @property {string} status Status of request("Fetched") in this case
+ * @property {string[]} characteristics keys of characteristics mapping of plan
  */
-module.exports.retrieveDataWithUsername = async (...args) => callViewFunction('retrieveDataWithUsername',
-  '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
 
-//  user : sender
-//            provider: AccountId,
 /**
- * @function - A CallView function, And It's For Retrieving Data With Wallet
- * @param {string} sender - Address Of User
- * @param args - Arguments Of retrieveDataWithWallet Function
- * @param {string} args[0] - Address of Provider
- * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
- {
-  "status": "Fetched",
-  "result": [
-    {
-      "provider": "5Dyu5YxLufavjPg8vP31BhKs5xz8ncdkQcNdGwf5XtW4C9Ym",
-      "plan": {
-        "duration": "40,000,000",
-        "active_session_limit": "1",
-        "price": "2,000",
-        "max_refund_permille_policy": "200",
-        "disabled": false
-      },
-      "plan_index": "1",
-      "subscription_time": "1,619,631,732,000",
-      "meta_data_encrypted": "shit",
-      "refunded": false
-    }
-  ]
-}
+ * @typedef HashResult
+ * @property {string} status Status of request("Fetched") in this case
+ * @property {string} result Hash of given string
  */
-module.exports.retrieveDataWithWallet = async (sender, ...args) => callViewFunction('retrieveDataWithWallet',
-  sender, ...args);
 
-//  user : sender
 /**
- * @function - A CallView function, And It's For Retrieving Whole Data With Wallet
- * @param {string} sender - Address Of User
- * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
- {
-  "status": "Fetched",
-  "result": [
-    {
-      "provider": "5Dyu5YxLufavjPg8vP31BhKs5xz8ncdkQcNdGwf5XtW4C9Ym",
-      "plan": {
-        "duration": "40,000,000",
-        "active_session_limit": "1",
-        "price": "2,000",
-        "max_refund_permille_policy": "200",
-        "disabled": false
-      },
-      "plan_index": "1",
-      "subscription_time": "1,619,631,732,000",
-      "meta_data_encrypted": "shit",
-      "refunded": false
-    }
-  ]
-}
+ * @typedef BooleanResult
+ * @property {string} status Status of request("Fetched") in this case
+ * @property {bool} result
  */
-module.exports.retrieveWholeDataWithWallet = async (sender) => callViewFunction('retrieveWholeDataWithWallet',
-  sender);
 
-//   user: AccountId,
-//   pass_phrase: String,
 /**
- * @function - A CallView function, And It's For Checking Auth in SubsCrypt Dashboard
- * @param args - Arguments Of userCheckAuth Function
- * @param {string} args[0] - Address Of User
- * @param {string} args[1] - pass_phrase
- * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
- {
-  "status": "Fetched",
-  "result": true
-}
+ * @typedef SubscriptionFetched
+ * @property {string} status Status of request("Fetched") in this case
+ * @property {SubscriptionRecord[]} result Array of SubscriptionRecords
  */
-module.exports.userCheckAuth = async (...args) => callViewFunction('userCheckAuth',
-  '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
 
-//   provider: AccountId,
-//   pass_phrase: String,
 /**
- * @function - A CallView function, And It's For Checking Auth in SubsCrypt Dashboard
- * @param args - Arguments Of providerCheckAuth Function
- * @param {string} args[0] - Address Of Provider
- * @param {string} args[1] - pass_phrase
- * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
- {
-  "status": "Fetched",
-  "result": true
-}
+ * Getting Plan Data of a provider
+ * @param {string} providerAddress - Address of Provider
+ * @param {number} planIndex - plan_index
+ * @returns {Promise<PlanFetched|Failed>} - Return a plan data or error
  */
-module.exports.providerCheckAuth = async (...args) => callViewFunction('providerCheckAuth',
-  '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
+async function getPlanData(providerAddress, planIndex) {
+  return callViewFunction('getPlanData',
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', providerAddress, planIndex);
+}
 
-//   username: String,
-//   pass_phrase: String,
 /**
- * @function - A CallView function, And It's For Checking Auth in SubsCrypt Dashboard
- * @param args - Arguments Of providerCheckAuthWithUsername Function
- * @param {string} args[0] - Username of provider
- * @param {string} args[1] - pass_phrase
- * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
- {
-  "status": "Fetched",
-  "result": true
-}
+ * Check if the given user has a valid active subscription in the given plan index.
+ * @param {string} userAddress - Address Of User
+ * @param {string} providerAddress - Address of Provider
+ * @param {number} planIndex - plan_index
+ * @returns {Promise<BooleanResult|Failed>} - Result of request
  */
-module.exports.providerCheckAuthWithUsername = async (...args) => callViewFunction('providerCheckAuthWithUsername',
-  '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
+async function checkSubscription(userAddress, providerAddress, planIndex) {
+  return callViewFunction('checkSubscription',
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', userAddress, providerAddress, planIndex);
+}
 
-// username: String,
-//   pass_phrase: String,
 /**
- * @function - A CallView function, And It's For Checking Auth in SubsCrypt Dashboard
- * @param args - Arguments Of userCheckAuthWithUsername Function
- * @param {string} args[0] - Username
- * @param {string} args[1] - pass_phrase
- * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
- {
-  "status": "Fetched",
-  "result": true
-}
+ * Check if the given user has a valid active subscription in the given plan index.
+ * @param {string} username- Username
+ * @param {string} providerAddress - Address of Provider
+ * @param {number} planIndex - plan_index
+ * @returns {Promise<BooleanResult|Failed>} - Result of request
  */
-module.exports.userCheckAuthWithUsername = async (...args) => callViewFunction('userCheckAuthWithUsername',
-  '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
+async function checkSubscriptionWithUsername(username, providerAddress, planIndex) {
+  return callViewFunction('checkSubscriptionWithUsername',
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', userAddress, providerAddress, planIndex);
+}
 
-// user: AccountId,
-//   provider: AccountId,
-//   pass_phrase: String,
 /**
- * @function - A CallView function, And It's For Checking Auth of users in different providers using wallet
- * @param args - Arguments Of checkAuth Function
- * @param {string} args[0] - Address Of User
- * @param {string} args[1] - Address of Provider
- * @param {string} args[2] - pass_phrase
- * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
- {
-  "status": "Fetched",
-  "result": true
-}
+ * Retrieving Whole Subscription Data With Password of SubsCrypt dashboard
+ * @param {string} username - Username
+ * @param {string} password - password
+ * @returns {Promise<SubscriptionFetched|Failed>} - Result of request
  */
-module.exports.checkAuth = async (...args) => callViewFunction('checkAuth',
-  '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
+async function retrieveWholeDataWithUsername(username, password) {
+  return callViewFunction('retrieveWholeDataWithUsername',
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', username, password);
+}
 
-// username: String,
-//   provider: AccountId,
-//   pass_phrase: String,
 /**
- * @function - A CallView function, And It's For Checking Auth of users in different providers using user and pass
- * @param args - Arguments Of checkAuthWithUsername Function
- * @param {string} args[0] - username of user
- * @param {string} args[1] - Address of Provider
- * @param {string} args[2] - pass_phrase
- * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
- {
-  "status": "Fetched",
-  "result": true
-}
+ * Retrieving Subscription Data to given provider With Password
+ * @param {string} username - Username
+ * @param {string} providerAddress - Address of Provider
+ * @param {string} password - password
+ * @returns {Promise<SubscriptionFetched|Failed>} - Result of request
  */
-module.exports.checkAuthWithUsername = async (...args) => callViewFunction('checkAuthWithUsername',
-  '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
+async function retrieveDataWithUsername(username, providerAddress, password) {
+  return callViewFunction('retrieveDataWithUsername',
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', username, providerAddress, password);
+}
 
-// pass: String,
 /**
- * @function - A CallView function, And It's For getting sha2 of string
- * @param args - Arguments Of getSha2 Function
- * @param {string} args[0] - pass
- * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
- {
-  "status": "Fetched",
-  "result": "0xc73b7008f623d7ccf33cfbf4021f5d5c214b8cb76821048c1d79f0e4f53c281f"
-}
+ * Retrieving Subscription Data to given provider With wallet
+ * @param {string} sender - Address of wallet
+ * @param {string} providerAddress - Address of Provider
+ * @returns {Promise<SubscriptionFetched|Failed>} - Result of request
  */
-module.exports.getSha2 = async (...args) => callViewFunction('getSha2',
-  '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', ...args);
+async function retrieveDataWithWallet(sender, providerAddress) {
+  return callViewFunction('retrieveDataWithWallet',
+    sender, providerAddress);
+}
+
+/**
+ * Retrieving whole Subscription Data With wallet
+ * @param {string} sender - Address of wallet
+ * @returns {Promise<SubscriptionFetched|Failed>} - Result of request
+ */
+async function retrieveWholeDataWithWallet(sender) {
+  return callViewFunction('retrieveWholeDataWithWallet',
+    sender);
+}
+
+/**
+ * Check password of user for SubsCrypt Dashboard
+ * @param {string} userAddress - Address Of User
+ * @param {string} password - password
+ * @returns {Promise<BooleanResult|Failed>} - Result of request
+ */
+async function userCheckAuth(userAddress, password) {
+  return callViewFunction('userCheckAuth',
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', userAddress, password);
+}
+
+/**
+ * Check password of provider for SubsCrypt Dashboard
+ * @param {string} providerAddress - Address Of Provider
+ * @param {string} password - password
+ * @returns {Promise<BooleanResult|Failed>} - Result of request
+ */
+async function providerCheckAuth(providerAddress, password) {
+  return callViewFunction('providerCheckAuth',
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', providerAddress, password);
+}
+/**
+ * Check password of provider for SubsCrypt Dashboard with username
+ * @param {string} providerUsername - Username of provider
+ * @param {string} password - password
+ * @returns {Promise<BooleanResult|Failed>} - Result of request
+ */
+async function providerCheckAuthWithUsername(providerUsername, password) {
+  return callViewFunction('providerCheckAuthWithUsername',
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', providerUsername, password);
+}
+
+/**
+ * Check password of user for SubsCrypt Dashboard with username
+ * @param {string} username - Username
+ * @param {string} password - password
+ * @returns {Promise<BooleanResult|Failed>} - Result of request
+ */
+async function userCheckAuthWithUsername(username, password) {
+  return callViewFunction('userCheckAuthWithUsername',
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', username, password);
+}
+
+/**
+ * Check password of user for given provider with wallet
+ * @param {string} userAddress - Address of User
+ * @param {string} providerAddress - Address of provider
+ * @param {string} password - password
+ * @returns {Promise<BooleanResult|Failed>} - Result of request
+ */
+async function checkAuth(userAddress, providerAddress, password) {
+  return callViewFunction('checkAuth',
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', userAddress, providerAddress, password);
+}
+
+/**
+ * Check password of user for given provider with username
+ * @param {string} username - Username
+ * @param {string} providerAddress - Address of provider
+ * @param {string} password - password
+ * @returns {Promise<BooleanResult|Failed>} - Result of request
+ */
+async function checkAuthWithUsername(username, providerAddress, password) {
+  return callViewFunction('checkAuthWithUsername',
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', username, providerAddress, password);
+}
+
+/**
+ * Getting sha2 of string
+ * @param {string} anyString - Any String to be hashed
+ * @returns {Promise<HashResult|Failed>} - Result of request
+ */
+async function getSha2(anyString) {
+  return callViewFunction('getSha2',
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', anyString);
+}
+
+/**
+ * Getting plan Characteristics of given plan
+ * @param {string} providerAddress - Address of Provider
+ * @param {number} planIndex - plan_index
+ * @returns {Promise<CharacteristicsFetched|Failed>} - Result of request
+ */
+async function getPlanCharacteristics(providerAddress, planIndex) {
+  return callViewFunction('getPlanCharacteristics',
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', providerAddress, planIndex);
+}
+
+/**
+ * if username is available or not
+ * @param {string} username - username
+ * @returns {Promise<CharacteristicsFetched|Failed>} - Result of request
+ */
+async function isUsernameAvailable(username) {
+  return callViewFunction('isUsernameAvailable',
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', username);
+}
+
+/**
+ * returns username of given address
+ * @param {string} sender - Address of user
+ * @returns {Promise<CharacteristicsFetched|Failed>} - Result of request
+ */
+async function getUsername(sender) {
+  return callViewFunction('getUsername', sender);
+}
+
+module.exports = {
+  getPlanData,
+  checkSubscription,
+  checkSubscriptionWithUsername,
+  retrieveWholeDataWithUsername,
+  retrieveDataWithUsername,
+  retrieveDataWithWallet,
+  retrieveWholeDataWithWallet,
+  userCheckAuth,
+  providerCheckAuth,
+  providerCheckAuthWithUsername,
+  userCheckAuthWithUsername,
+  checkAuth,
+  checkAuthWithUsername,
+  getSha2,
+  getPlanCharacteristics,
+  isUsernameAvailable,
+  getUsername,
+};
