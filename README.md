@@ -1,7 +1,7 @@
 # SubsCrypt-npm-library
 <img src="https://oxydev.github.io/SubsCrypt-docs/images/logo2.png" width="500">
 
-[![npm](https://img.shields.io/npm/v/subscrypt.svg)](https://www.npmjs.com/package/subscrypt)
+[![npm](https://img.shields.io/npm/v/subscrypt.svg)](https://www.npmjs.com/package/@oxydev/subscrypt)
 [![Test status](https://github.com/oxydev/SubsCrypt-npm-library/actions/workflows/node.js.yml/badge.svg)](https://github.com/oxydev/SubsCrypt-npm-library/actions/workflows/node.js.yml)
 [![npm module downloads](https://badgen.net/npm/dt/subscrypt)](https://www.npmjs.org/package/subscrypt)
 # Import Package
@@ -17,11 +17,11 @@ You have to option right now, either you can use the latest version of code on r
     ``` 
 # Use Package in your project
 ```
-import subscrypt from 'subscrypt';
+import subscrypt from '@oxydev/subscrypt';
 ```
 or
 ```
-const subscrypt = require('subscrypt');
+const subscrypt = require('@oxydev/subscrypt');
 ```
 Now you can easily use the SubsCrypt library to get data from blockchain. Below are some examples:
 ```
