@@ -1,7 +1,12 @@
-const { getContract } = require('./api');
+const { contract } = require('../index');
 
 module.exports.callViewFunction = async (func, address, ...args) => {
-  const contract = await getContract();
+  if (contract == null) {
+    return {
+      status: 'NotConnected',
+    };
+  }
+
   const result = await contract.read(func, { value: 0, gasLimit: -1 }, ...args)
     .send(address);
   if (result.result.isOk) {
@@ -18,7 +23,12 @@ module.exports.callViewFunction = async (func, address, ...args) => {
 };
 
 module.exports.sendFunction = async (func, address, injector, value, ...args) => {
-  const contract = await getContract();
+  if (contract == null) {
+    return {
+      status: 'NotConnected',
+    };
+  }
+
   return contract.exec(func,
     { value, gasLimit: -1 }, ...args).signAndSend(address, { signer: injector.signer },
     ({ events = [], status }) => {

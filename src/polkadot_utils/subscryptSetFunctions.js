@@ -1,151 +1,165 @@
+const { getPlanData } = require('../index');
 const { sendFunction } = require('./interact');
 
 // sth in this format => '0x1cc7f105fdcf2a8067d1bb6e2dcb045c22d84a04733e2b11d90e26230854fd42'
 /**
- * @function - A Send function, And It Sets The Subscrypt auth token hash
+ * It sets The SubsCrypt dashboard pass hash
  * @param {string} address - Address Of Sender
  * @param {string} injector - Object That Signs Tx
- * @param args - Arguments Of The Function
- * @param {string} args[0] - new auth token hash
+ * @param {string} passHash - new auth token hash
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
-module.exports.setSubscryptPass = async (address, injector, ...args) => sendFunction('setSubscryptPass', address, injector, 0, ...args);
+async function setSubscryptPass(address, injector, passHash) {
+  return sendFunction('setSubscryptPass', address, injector, 0, passHash);
+}
 
 // provider_address: AccountId
 // and sth in this format => '0x1cc7f105fdcf2a8067d1bb6e2dcb045c22d84a04733e2b11d90e26230854fd42'
 
 /**
- * @function - A Send function, And It Sets The password hash of user in each plan
+ * It sets The password hash of user for a specific provider
  * @param {string} address - Address Of Sender
  * @param {string} injector - Object That Signs Tx
- * @param args - Arguments Of The Function
- * @param {string} args[0] - Address of Provider
- * @param {string} args[1] - new pass hash
+ * @param {string} providerAddress - Address of Provider
+ * @param {string} passHash - new pass hash
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
-module.exports.setPassHashOfUserForEachProvider = async (address, injector, ...args) => sendFunction('setPassHashOfUserForEachProvider', address, injector, 0, ...args);
+async function setPassHashOfUserForEachProvider(address, injector, providerAddress, passHash) {
+  return sendFunction('setPassHashOfUserForEachProvider', address, injector, 0, providerAddress, passHash);
+}
 
-// provider_address: AccountId, plan_index: u128
 /**
- * @function - A Send function, And It's For Refunding
+ * refund subscription function
  * @param {string} address - Address Of Sender
  * @param {string} injector - Object That Signs Tx
- * @param args - Arguments Of The Function
- * @param {string} args[0] - Address of Provider
- * @param {number} args[1] - plan_index
+ * @param {string} providerAddress - Address of Provider
+ * @param {number} planIndex - plan_index
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
-module.exports.refund = async (address, injector, ...args) => sendFunction('refund', address, injector, 0, ...args);
+async function refund(address, injector, providerAddress, planIndex) {
+  return sendFunction('refund', address, injector, 0, providerAddress, planIndex);
+}
 
-// provider_address: AccountId, plan_index: u128
 /**
- * @function - A Send function, And It's For renewing subscription
+ * It's For renewing subscription
  * @param {string} address - Address Of Sender
  * @param {string} injector - Object That Signs Tx
- * @param args - Arguments Of The Function
- * @param {string} args[0] - Address of Provider
- * @param {number} args[1] - plan_index
+ * @param {string} providerAddress - Address of Provider
+ * @param {number} planIndex - plan_index
+ * @param {string[]} newCharacteristicsValues - newCharacteristicsValues
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
-module.exports.renew = async (address, injector, ...args) => sendFunction('renew', address, injector, 0, ...args);
+async function renew(address, injector, providerAddress, planIndex, newCharacteristicsValues) {
+  const plan = await getPlanData(providerAddress, planIndex);
+  let value = 0;
+  if (plan.status === 'Fetched') value = plan.result.price;
+  else return false;
+  return sendFunction('renew', address, injector, value, providerAddress, planIndex, newCharacteristicsValues);
+}
 
-// no args
 /**
- * @function - A Send function, And It's For Withdrawal
+ * Claiming profit money of providers
  * @param {string} address - Address Of Sender
  * @param {string} injector - Object That Signs Tx
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
-module.exports.withdraw = async (address, injector) => sendFunction('withdraw', address, injector, 0);
-
+async function withdraw(address, injector) {
+  sendFunction('withdraw', address, injector, 0);
+}
 //             provider_address: AccountId,
 //             plan_index: u128,
 //             pass hash: '0x1cc7f105fdcf2a8067d1bb6e2dcb045c22d84a04733e2b11d90e26230854fd42'
 //             username: String,
 //             metadata: String,
 /**
- * @function - A Send function, And It's For Subscription
+ * It's For Subscription
  * @param {string} address - Address Of Sender
  * @param {string} injector - Object That Signs Tx
- * @param {number} value - //todo this can be deleted and the info can be gotten from plan index
- * @param args - Arguments Of The Function
- * @param {string} args[0] - AccountId
- * @param {number} args[1] - plan_index
- * @param {string} args[2] - password hash
- * @param {string} args[3] - username
- * @param {string} args[4] - metadata
+ * @param {string} providerAddress - Address of provider
+ * @param {number} planIndex - plan_index
+ * @param {string} passHash - password hash
+ * @param {string} username - username
+ * @param {string[]} newCharacteristicsValues - newCharacteristicsValues
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
-module.exports.subscribe = async (address, injector, value, ...args) => sendFunction('subscribe', address, injector, value, ...args);
+async function subscribe(address, injector, providerAddress,
+  planIndex, passHash, username, newCharacteristicsValues) {
+  const plan = await getPlanData(providerAddress, planIndex);
+  let value = 0;
+  if (plan.status === 'Fetched') value = plan.result.price;
+  else return;
+  return sendFunction('subscribe', address, injector, value, providerAddress, planIndex, passHash, username, newCharacteristicsValues);
+}
 
-// plan_index: u128
 /**
- * @function - A Send function, And It's For Changing Disability Of The Selected Plan
+ * It's For Changing Disability Of The Selected Plan
  * @param {string} address - Address Of Sender
  * @param {string} injector - Object That Signs Tx
- * @param args - Arguments Of Refund Function
- * @param {number} args[0] - planIndex
+ * @param {number} planIndex - planIndex
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
-module.exports.changeDisable = async (address, injector, ...args) => sendFunction('changeDisable', address, injector, 0, ...args);
+async function changeDisable(address, injector, planIndex) {
+  return sendFunction('changeDisable', address, injector, 0, planIndex);
+}
 
-// plan_index: u128,
-//   duration: u64,
-//   active_session_limit: u128,
-//   price: u128,
-//   max_refund_permille_policies: u128,
-//   disabled: bool,
 /**
- * @function - A Send function, And It's For Editing Plan
+ * It's For Editing Plan
  * @param {string} address - Address Of Sender
  * @param {string} injector - Object That Signs Tx
- * @param args - Arguments Of Refund Function
- * @param {number} args[0] - plan_index
- * @param {number} args[1] - duration
- * @param {number} args[2] - active_session_limit
- * @param {number} args[3] - price
- * @param {number} args[4] - max_refund_permille_policy
- * @param {boolean} args[5] - disabled
+ * @param {number} planIndex- plan_index
+ * @param {number} duration - duration
+ * @param {number} price - price
+ * @param {number} maxRefundPermillePolicy - max_refund_permille_policy
+ * @param {boolean} disabled - disabled
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
-module.exports.editPlan = async (address, injector, ...args) => sendFunction('editPlan', address, injector, 0, ...args);
+async function editPlan(address, injector, planIndex,
+  duration, price, maxRefundPermillePolicy, disabled) {
+  return sendFunction('editPlan', address, injector, 0, planIndex, duration, price, maxRefundPermillePolicy, disabled);
+}
 
-// durations: Vec<u64>,
-//   active_session_limits: Vec<u128>,
-//   prices: Vec<u128>,
-//   max_refund_permille_policies: Vec<u128>,
 /**
- * @function - A Send function, And It's For Adding A Plan
+ * It's For Adding A Plan
  * @param {string} address - Address Of Sender
  * @param {string} injector - Object That Signs Tx
- * @param args - Arguments Of Refund Function
- * @param {number[]} args[0] - durations
- * @param {number[]} args[1] - active_sesion_limits
- * @param {number[]} args[2] - prices
- * @param {number[]} args[3] - max_refund_permille_policies
+ * @param {number[]} durations - durations
+ * @param {number[]} prices - prices
+ * @param {number[]} maxRefundPermillePolicies - max_refund_permille_policies
+ * @param {string[][]} planCharacteristics - plan_characteristics
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
-module.exports.addPlan = async (address, injector, ...args) => sendFunction('addPlan', address, injector, 0, ...args);
+async function addPlan(address, injector, durations, prices, maxRefundPermillePolicies, planCharacteristics) {
+  sendFunction('addPlan', address, injector, 0, durations, prices, maxRefundPermillePolicies, planCharacteristics);
+}
 
-// durations: Vec<u64>,
-//   active_session_limits: Vec<u128>,
-//   prices: Vec<u128>,
-//   max_refund_permille_policies: Vec<u128>,
-//   address: AccountId,
-//   username: String,
-//   subscrypt_pass_hash: [u8; 32],
 /**
- * @function - A Send function, And It's For Providing Register
+ * It's For Provider Register
  * @param {string} address - Address Of Sender
  * @param {string} injector - Object That Signs Tx
- * @param args - Arguments Of Refund Function
- * @param {number[]} args[0] - durations
- * @param {number[]} args[1] - active_sesion_limits
- * @param {number[]} args[2] - prices
- * @param {number[]} args[3] - max_refund_permille_policies
- * @param {string} args[4] - Address of money wallet of Provider
- * @param {String} args[3] - username
- * @param {string} args[4] - subscrypt_pass_hash
+ * @param {number[]} durations - durations
+ * @param {number[]} prices - prices
+ * @param {number[]} maxRefundPermillePolicies - max_refund_permille_policies
+ * @param {string} moneyAddress - Address of money wallet of Provider
+ * @param {String} username - username
+ * @param {string} passHash - subscrypt_pass_hash
+ * @param {string[][]} planCharacteristics - plan_characteristics
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
-module.exports.providerRegister = async (address, injector, ...args) => sendFunction('providerRegister', address, injector, 100, ...args);
+async function providerRegister(address, injector, durations, prices, maxRefundPermillePolicies,
+  moneyAddress, username, passHash, planCharacteristics) {
+  sendFunction('providerRegister', address, injector, 100, durations, prices, maxRefundPermillePolicies,
+    moneyAddress, username, passHash, planCharacteristics);
+}
+
+module.exports = {
+  setSubscryptPass,
+  setPassHashOfUserForEachProvider,
+  refund,
+  renew,
+  withdraw,
+  subscribe,
+  changeDisable,
+  editPlan,
+  addPlan,
+  providerRegister,
+};

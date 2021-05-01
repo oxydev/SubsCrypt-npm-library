@@ -30,6 +30,12 @@ const { callViewFunction } = require('./interact');
  */
 
 /**
+ * @typedef CharacteristicsFetched
+ * @property {string} status Status of request("Fetched") in this case
+ * @property {string[]} characteristics keys of characteristics mapping of plan
+ */
+
+/**
  * @typedef HashResult
  * @property {string} status Status of request("Fetched") in this case
  * @property {string} result Hash of given string
@@ -203,6 +209,36 @@ async function getSha2(anyString) {
     '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', anyString);
 }
 
+/**
+ * Getting plan Characteristics of given plan
+ * @param {string} providerAddress - Address of Provider
+ * @param {number} planIndex - plan_index
+ * @returns {Promise<CharacteristicsFetched|Failed>} - Result of request
+ */
+async function getPlanCharacteristics(providerAddress, planIndex) {
+  callViewFunction('getPlanCharacteristics',
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', providerAddress, planIndex);
+}
+
+/**
+ * if username is available or not
+ * @param {string} username - username
+ * @returns {Promise<CharacteristicsFetched|Failed>} - Result of request
+ */
+async function isUsernameAvailable(username) {
+  callViewFunction('isUsernameAvailable',
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', username);
+}
+
+/**
+ * returns username of given address
+ * @param {string} sender - Address of user
+ * @returns {Promise<CharacteristicsFetched|Failed>} - Result of request
+ */
+async function getUsername(sender) {
+  callViewFunction('getUsername', sender);
+}
+
 module.exports = {
   getPlanData,
   checkSubscription,
@@ -218,4 +254,7 @@ module.exports = {
   checkAuth,
   checkAuthWithUsername,
   getSha2,
+  getPlanCharacteristics,
+  isUsernameAvailable,
+  getUsername,
 };

@@ -1,4 +1,5 @@
 const metaData = require('./polkadot_utils/configs/metadata');
+const { isConnected } = require('./polkadot_utils/api');
 const {
   getWalletAccounts,
   getWalletAccess,
@@ -27,6 +28,7 @@ const contract = require('./polkadot_utils/api').getContract();
 module.exports = {
   abi: metaData,
   contract,
+  isConnected,
   getPlanData,
   checkSubscription,
   checkSubscriptionWithUsername,
