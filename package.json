@@ -1,5 +1,5 @@
 {
-  "name": "@oxydev/subscrypt",
+  "name": "subscrypt",
   "main": "src/index.js",
   "version": "0.1.0",
   "author": "Saber Zafarpoor <szafarpoor@ce.sharif.edu> (https://github.com/saberdotcoder), Sepehr Kianian <sepehrkianian09@yahoo.com> (https://github.com/sepehrkianian09)",
