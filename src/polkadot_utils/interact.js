@@ -2,9 +2,9 @@ const { contract } = require('../index');
 
 module.exports.callViewFunction = async (func, address, ...args) => {
   if (contract == null) {
-    return {
+    return Promise.resolve({
       status: 'NotConnected',
-    };
+    });
   }
 
   const result = await contract.read(func, { value: 0, gasLimit: -1 }, ...args)
@@ -24,9 +24,9 @@ module.exports.callViewFunction = async (func, address, ...args) => {
 
 module.exports.sendFunction = async (func, address, injector, value, ...args) => {
   if (contract == null) {
-    return {
+    return Promise.resolve({
       status: 'NotConnected',
-    };
+    });
   }
 
   return contract.exec(func,

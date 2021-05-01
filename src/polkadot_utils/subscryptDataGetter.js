@@ -60,7 +60,7 @@ const { callViewFunction } = require('./interact');
  * @returns {Promise<PlanFetched|Failed>} - Return a plan data or error
  */
 async function getPlanData(providerAddress, planIndex) {
-  callViewFunction('getPlanData',
+  return callViewFunction('getPlanData',
     '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', providerAddress, planIndex);
 }
 
@@ -72,7 +72,7 @@ async function getPlanData(providerAddress, planIndex) {
  * @returns {Promise<BooleanResult|Failed>} - Result of request
  */
 async function checkSubscription(userAddress, providerAddress, planIndex) {
-  callViewFunction('checkSubscription',
+  return callViewFunction('checkSubscription',
     '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', userAddress, providerAddress, planIndex);
 }
 
@@ -84,7 +84,7 @@ async function checkSubscription(userAddress, providerAddress, planIndex) {
  * @returns {Promise<BooleanResult|Failed>} - Result of request
  */
 async function checkSubscriptionWithUsername(username, providerAddress, planIndex) {
-  callViewFunction('checkSubscriptionWithUsername',
+  return callViewFunction('checkSubscriptionWithUsername',
     '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', userAddress, providerAddress, planIndex);
 }
 
@@ -95,7 +95,7 @@ async function checkSubscriptionWithUsername(username, providerAddress, planInde
  * @returns {Promise<SubscriptionFetched|Failed>} - Result of request
  */
 async function retrieveWholeDataWithUsername(username, password) {
-  callViewFunction('retrieveWholeDataWithUsername',
+  return callViewFunction('retrieveWholeDataWithUsername',
     '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', username, password);
 }
 
@@ -107,7 +107,7 @@ async function retrieveWholeDataWithUsername(username, password) {
  * @returns {Promise<SubscriptionFetched|Failed>} - Result of request
  */
 async function retrieveDataWithUsername(username, providerAddress, password) {
-  callViewFunction('retrieveDataWithUsername',
+  return callViewFunction('retrieveDataWithUsername',
     '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', username, providerAddress, password);
 }
 
@@ -118,7 +118,7 @@ async function retrieveDataWithUsername(username, providerAddress, password) {
  * @returns {Promise<SubscriptionFetched|Failed>} - Result of request
  */
 async function retrieveDataWithWallet(sender, providerAddress) {
-  callViewFunction('retrieveDataWithWallet',
+  return callViewFunction('retrieveDataWithWallet',
     sender, providerAddress);
 }
 
@@ -128,7 +128,7 @@ async function retrieveDataWithWallet(sender, providerAddress) {
  * @returns {Promise<SubscriptionFetched|Failed>} - Result of request
  */
 async function retrieveWholeDataWithWallet(sender) {
-  callViewFunction('retrieveWholeDataWithWallet',
+  return callViewFunction('retrieveWholeDataWithWallet',
     sender);
 }
 
@@ -139,7 +139,7 @@ async function retrieveWholeDataWithWallet(sender) {
  * @returns {Promise<BooleanResult|Failed>} - Result of request
  */
 async function userCheckAuth(userAddress, password) {
-  callViewFunction('userCheckAuth',
+  return callViewFunction('userCheckAuth',
     '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', userAddress, password);
 }
 
@@ -150,7 +150,7 @@ async function userCheckAuth(userAddress, password) {
  * @returns {Promise<BooleanResult|Failed>} - Result of request
  */
 async function providerCheckAuth(providerAddress, password) {
-  callViewFunction('providerCheckAuth',
+  return callViewFunction('providerCheckAuth',
     '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', providerAddress, password);
 }
 /**
@@ -160,7 +160,7 @@ async function providerCheckAuth(providerAddress, password) {
  * @returns {Promise<BooleanResult|Failed>} - Result of request
  */
 async function providerCheckAuthWithUsername(providerUsername, password) {
-  callViewFunction('providerCheckAuthWithUsername',
+  return callViewFunction('providerCheckAuthWithUsername',
     '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', providerUsername, password);
 }
 
@@ -171,7 +171,7 @@ async function providerCheckAuthWithUsername(providerUsername, password) {
  * @returns {Promise<BooleanResult|Failed>} - Result of request
  */
 async function userCheckAuthWithUsername(username, password) {
-  callViewFunction('userCheckAuthWithUsername',
+  return callViewFunction('userCheckAuthWithUsername',
     '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', username, password);
 }
 
@@ -183,7 +183,7 @@ async function userCheckAuthWithUsername(username, password) {
  * @returns {Promise<BooleanResult|Failed>} - Result of request
  */
 async function checkAuth(userAddress, providerAddress, password) {
-  callViewFunction('checkAuth',
+  return callViewFunction('checkAuth',
     '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', userAddress, providerAddress, password);
 }
 
@@ -195,7 +195,7 @@ async function checkAuth(userAddress, providerAddress, password) {
  * @returns {Promise<BooleanResult|Failed>} - Result of request
  */
 async function checkAuthWithUsername(username, providerAddress, password) {
-  callViewFunction('checkAuthWithUsername',
+  return callViewFunction('checkAuthWithUsername',
     '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', username, providerAddress, password);
 }
 
@@ -205,7 +205,7 @@ async function checkAuthWithUsername(username, providerAddress, password) {
  * @returns {Promise<HashResult|Failed>} - Result of request
  */
 async function getSha2(anyString) {
-  callViewFunction('getSha2',
+  return callViewFunction('getSha2',
     '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', anyString);
 }
 
@@ -216,7 +216,7 @@ async function getSha2(anyString) {
  * @returns {Promise<CharacteristicsFetched|Failed>} - Result of request
  */
 async function getPlanCharacteristics(providerAddress, planIndex) {
-  callViewFunction('getPlanCharacteristics',
+  return callViewFunction('getPlanCharacteristics',
     '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', providerAddress, planIndex);
 }
 
@@ -226,7 +226,7 @@ async function getPlanCharacteristics(providerAddress, planIndex) {
  * @returns {Promise<CharacteristicsFetched|Failed>} - Result of request
  */
 async function isUsernameAvailable(username) {
-  callViewFunction('isUsernameAvailable',
+  return callViewFunction('isUsernameAvailable',
     '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', username);
 }
 
@@ -236,7 +236,7 @@ async function isUsernameAvailable(username) {
  * @returns {Promise<CharacteristicsFetched|Failed>} - Result of request
  */
 async function getUsername(sender) {
-  callViewFunction('getUsername', sender);
+  return callViewFunction('getUsername', sender);
 }
 
 module.exports = {
