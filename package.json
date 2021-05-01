@@ -1,10 +1,16 @@
 {
-  "name": "subscrypt",
+  "name": "@oxydev/subscrypt",
   "main": "src/index.js",
   "version": "0.0.4",
   "author": "Saber Zafarpoor <szafarpoor@ce.sharif.edu> (https://github.com/saberdotcoder), Sepehr Kianian <sepehrkianian09@yahoo.com> (https://github.com/sepehrkianian09)",
   "license": "Apache-2.0",
-  "repository": "https://github.com/oxydev/SubsCrypt-npm-library/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oxydev/SubsCrypt-npm-library.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "test": "mocha src/*.test.js --exit"
   },
@@ -19,6 +25,7 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "jsdoc-to-markdown": "^7.0.1",
-    "mocha": "8.3.2"
+    "mocha": "8.3.2",
+    "npm-github-release": "^0.13.0"
   }
 }
