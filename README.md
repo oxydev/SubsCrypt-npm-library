@@ -9,11 +9,11 @@ We have made this wrapper over SubsCrypt contract to make uses of our api easier
 You have to option right now, either you can use the latest version of code on repo or use the npm package on npm repository which is the latest version of this repo's release.
 * Clone the repo and add this to `package.json` of your project.
     ```
-    "subscrypt": "file:../SubsCrypt-npm-library",
+    "@oxydev/subscrypt": "file:../SubsCrypt-npm-library",
     ```
 * Or run this command, and then you can use latest SubsCrypt npm package 
     ```
-    yarn add subscrypt
+    yarn add @oxydev/subscrypt
     ``` 
 # Use Package in your project
 ```

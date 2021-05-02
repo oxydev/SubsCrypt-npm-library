@@ -150,6 +150,17 @@ async function providerRegister(address, injector, durations, prices, maxRefundP
   sendFunction('providerRegister', address, injector, 100, durations, prices, maxRefundPermillePolicies,
     moneyAddress, username, passHash, planCharacteristics);
 }
+/**
+ * It's For Provider to add more features to their plans
+ * @param {string} address - Address Of Sender
+ * @param {string} injector - Object That Signs Tx
+ * @param {number} planIndex - plan_index
+ * @param {string[]} planCharacteristics - plan_characteristics
+ * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
+ */
+async function addCharacteristicForPlan(address, injector, planIndex, planCharacteristics) {
+  sendFunction('addCharacteristicForPlan', address, injector, 0, planIndex, planCharacteristics);
+}
 
 module.exports = {
   setSubscryptPass,
@@ -162,4 +173,5 @@ module.exports = {
   editPlan,
   addPlan,
   providerRegister,
+  addCharacteristicForPlan,
 };
