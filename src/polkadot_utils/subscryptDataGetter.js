@@ -223,7 +223,7 @@ async function getPlanCharacteristics(providerAddress, planIndex) {
 /**
  * if username is available or not
  * @param {string} username - username
- * @returns {Promise<CharacteristicsFetched|Failed>} - Result of request
+ * @returns {Promise<boolean|Failed>} - Result of request
  */
 async function isUsernameAvailable(username) {
   return callViewFunction('isUsernameAvailable',
@@ -233,7 +233,7 @@ async function isUsernameAvailable(username) {
 /**
  * returns username of given address
  * @param {string} sender - Address of user
- * @returns {Promise<CharacteristicsFetched|Failed>} - Result of request
+ * @returns {Promise<string|Failed>} - Result of request
  */
 async function getUsername(sender) {
   return callViewFunction('getUsername', sender);
