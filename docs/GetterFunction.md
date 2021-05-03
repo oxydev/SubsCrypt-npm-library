@@ -43,6 +43,15 @@
 <dt><a href="#getSha2">getSha2(anyString)</a> ⇒ <code>Promise.&lt;(HashResult|Failed)&gt;</code></dt>
 <dd><p>Getting sha2 of string</p>
 </dd>
+<dt><a href="#getPlanCharacteristics">getPlanCharacteristics(providerAddress, planIndex)</a> ⇒ <code>Promise.&lt;(CharacteristicsFetched|Failed)&gt;</code></dt>
+<dd><p>Getting plan Characteristics of given plan</p>
+</dd>
+<dt><a href="#isUsernameAvailable">isUsernameAvailable(username)</a> ⇒ <code>Promise.&lt;(boolean|Failed)&gt;</code></dt>
+<dd><p>if username is available or not</p>
+</dd>
+<dt><a href="#getUsername">getUsername(sender)</a> ⇒ <code>Promise.&lt;(string|Failed)&gt;</code></dt>
+<dd><p>returns username of given address</p>
+</dd>
 </dl>
 
 ## Typedefs
@@ -55,6 +64,8 @@
 <dt><a href="#Failed">Failed</a></dt>
 <dd></dd>
 <dt><a href="#PlanFetched">PlanFetched</a></dt>
+<dd></dd>
+<dt><a href="#CharacteristicsFetched">CharacteristicsFetched</a></dt>
 <dd></dd>
 <dt><a href="#HashResult">HashResult</a></dt>
 <dd></dd>
@@ -70,7 +81,7 @@
 Getting Plan Data of a provider
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;(PlanFetched\|Failed)&gt;</code> - - Return a plan data or error
+**Returns**: <code>Promise.&lt;(PlanFetched\|Failed)&gt;</code> - - Return a plan data or error  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -83,7 +94,7 @@ Getting Plan Data of a provider
 Check if the given user has a valid active subscription in the given plan index.
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;(BooleanResult\|Failed)&gt;</code> - - Result of request
+**Returns**: <code>Promise.&lt;(BooleanResult\|Failed)&gt;</code> - - Result of request  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -97,7 +108,7 @@ Check if the given user has a valid active subscription in the given plan index.
 Check if the given user has a valid active subscription in the given plan index.
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;(BooleanResult\|Failed)&gt;</code> - - Result of request
+**Returns**: <code>Promise.&lt;(BooleanResult\|Failed)&gt;</code> - - Result of request  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -111,7 +122,7 @@ Check if the given user has a valid active subscription in the given plan index.
 Retrieving Whole Subscription Data With Password of SubsCrypt dashboard
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;(SubscriptionFetched\|Failed)&gt;</code> - - Result of request
+**Returns**: <code>Promise.&lt;(SubscriptionFetched\|Failed)&gt;</code> - - Result of request  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -124,7 +135,7 @@ Retrieving Whole Subscription Data With Password of SubsCrypt dashboard
 Retrieving Subscription Data to given provider With Password
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;(SubscriptionFetched\|Failed)&gt;</code> - - Result of request
+**Returns**: <code>Promise.&lt;(SubscriptionFetched\|Failed)&gt;</code> - - Result of request  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -138,7 +149,7 @@ Retrieving Subscription Data to given provider With Password
 Retrieving Subscription Data to given provider With wallet
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;(SubscriptionFetched\|Failed)&gt;</code> - - Result of request
+**Returns**: <code>Promise.&lt;(SubscriptionFetched\|Failed)&gt;</code> - - Result of request  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -151,7 +162,7 @@ Retrieving Subscription Data to given provider With wallet
 Retrieving whole Subscription Data With wallet
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;(SubscriptionFetched\|Failed)&gt;</code> - - Result of request
+**Returns**: <code>Promise.&lt;(SubscriptionFetched\|Failed)&gt;</code> - - Result of request  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -163,7 +174,7 @@ Retrieving whole Subscription Data With wallet
 Check password of user for SubsCrypt Dashboard
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;(BooleanResult\|Failed)&gt;</code> - - Result of request
+**Returns**: <code>Promise.&lt;(BooleanResult\|Failed)&gt;</code> - - Result of request  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -176,7 +187,7 @@ Check password of user for SubsCrypt Dashboard
 Check password of provider for SubsCrypt Dashboard
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;(BooleanResult\|Failed)&gt;</code> - - Result of request
+**Returns**: <code>Promise.&lt;(BooleanResult\|Failed)&gt;</code> - - Result of request  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -189,7 +200,7 @@ Check password of provider for SubsCrypt Dashboard
 Check password of provider for SubsCrypt Dashboard with username
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;(BooleanResult\|Failed)&gt;</code> - - Result of request
+**Returns**: <code>Promise.&lt;(BooleanResult\|Failed)&gt;</code> - - Result of request  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -202,7 +213,7 @@ Check password of provider for SubsCrypt Dashboard with username
 Check password of user for SubsCrypt Dashboard with username
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;(BooleanResult\|Failed)&gt;</code> - - Result of request
+**Returns**: <code>Promise.&lt;(BooleanResult\|Failed)&gt;</code> - - Result of request  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -215,7 +226,7 @@ Check password of user for SubsCrypt Dashboard with username
 Check password of user for given provider with wallet
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;(BooleanResult\|Failed)&gt;</code> - - Result of request
+**Returns**: <code>Promise.&lt;(BooleanResult\|Failed)&gt;</code> - - Result of request  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -229,7 +240,7 @@ Check password of user for given provider with wallet
 Check password of user for given provider with username
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;(BooleanResult\|Failed)&gt;</code> - - Result of request
+**Returns**: <code>Promise.&lt;(BooleanResult\|Failed)&gt;</code> - - Result of request  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -243,11 +254,48 @@ Check password of user for given provider with username
 Getting sha2 of string
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;(HashResult\|Failed)&gt;</code> - - Result of request
+**Returns**: <code>Promise.&lt;(HashResult\|Failed)&gt;</code> - - Result of request  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | anyString | <code>string</code> | Any String to be hashed |
+
+<a name="getPlanCharacteristics"></a>
+
+## getPlanCharacteristics(providerAddress, planIndex) ⇒ <code>Promise.&lt;(CharacteristicsFetched\|Failed)&gt;</code>
+Getting plan Characteristics of given plan
+
+**Kind**: global function  
+**Returns**: <code>Promise.&lt;(CharacteristicsFetched\|Failed)&gt;</code> - - Result of request  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| providerAddress | <code>string</code> | Address of Provider |
+| planIndex | <code>number</code> | plan_index |
+
+<a name="isUsernameAvailable"></a>
+
+## isUsernameAvailable(username) ⇒ <code>Promise.&lt;(boolean\|Failed)&gt;</code>
+if username is available or not
+
+**Kind**: global function  
+**Returns**: <code>Promise.&lt;(boolean\|Failed)&gt;</code> - - Result of request  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| username | <code>string</code> | username |
+
+<a name="getUsername"></a>
+
+## getUsername(sender) ⇒ <code>Promise.&lt;(string\|Failed)&gt;</code>
+returns username of given address
+
+**Kind**: global function  
+**Returns**: <code>Promise.&lt;(string\|Failed)&gt;</code> - - Result of request  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| sender | <code>string</code> | Address of user |
 
 <a name="PlanConst"></a>
 
@@ -298,6 +346,17 @@ Getting sha2 of string
 | --- | --- | --- |
 | status | <code>string</code> | Status of request("Fetched") in this case |
 | result | [<code>PlanConst</code>](#PlanConst) | Plan Const data |
+
+<a name="CharacteristicsFetched"></a>
+
+## CharacteristicsFetched
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| status | <code>string</code> | Status of request("Fetched") in this case |
+| characteristics | <code>Array.&lt;string&gt;</code> | keys of characteristics mapping of plan |
 
 <a name="HashResult"></a>
 
