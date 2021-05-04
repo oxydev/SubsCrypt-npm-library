@@ -1,4 +1,4 @@
-const { getPlanData } = require('../index');
+const { getPlanData } = require('./subscryptDataGetter');
 const { sendFunction } = require('./interact');
 
 // sth in this format => '0x1cc7f105fdcf2a8067d1bb6e2dcb045c22d84a04733e2b11d90e26230854fd42'
