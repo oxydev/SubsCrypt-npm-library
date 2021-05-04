@@ -1,4 +1,4 @@
-const { contract } = require('../index');
+const { contract } = require('./api').getContract();
 
 module.exports.callViewFunction = async (func, address, ...args) => {
   if (contract == null) {
@@ -46,3 +46,5 @@ module.exports.sendFunction = async (func, address, injector, value, ...args) =>
       }
     });
 };
+
+module.exports.isConnected = async () => await contract != null;
