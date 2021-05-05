@@ -85,7 +85,8 @@ async function checkSubscription(userAddress, providerAddress, planIndex) {
  */
 async function checkSubscriptionWithUsername(username, providerAddress, planIndex) {
   return callViewFunction('checkSubscriptionWithUsername',
-    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', userAddress, providerAddress, planIndex);
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', username,
+    providerAddress, planIndex);
 }
 
 /**
