@@ -1,5 +1,5 @@
 const metaData = require('./polkadot_utils/configs/metadata');
-const { isConnected } = require('./polkadot_utils/api');
+const { isConnected } = require('./polkadot_utils/interact');
 const {
   getWalletAccounts,
   getWalletAccess,

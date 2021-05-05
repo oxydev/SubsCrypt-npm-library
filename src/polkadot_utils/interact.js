@@ -1,6 +1,8 @@
-const { contract } = require('../index');
+const { getContract } = require('./api');
 
 module.exports.callViewFunction = async (func, address, ...args) => {
+  const contract = await getContract();
+
   if (contract == null) {
     return Promise.resolve({
       status: 'NotConnected',
@@ -23,6 +25,8 @@ module.exports.callViewFunction = async (func, address, ...args) => {
 };
 
 module.exports.sendFunction = async (func, address, injector, value, ...args) => {
+  const contract = await getContract();
+
   if (contract == null) {
     return Promise.resolve({
       status: 'NotConnected',
@@ -45,4 +49,9 @@ module.exports.sendFunction = async (func, address, injector, value, ...args) =>
         console.log('Finalized block hash', status.asFinalized.toHex());
       }
     });
+};
+
+module.exports.isConnected = async () => {
+  const contract = await getContract();
+  return contract != null;
 };

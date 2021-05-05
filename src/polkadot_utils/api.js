@@ -8,10 +8,10 @@ const { contract } = require('../index');
 module.exports.getContract = async () => {
   const abi = new Abi(metaData);
   const wsProvider = new WsProvider(config.node);
+  const api = await ApiPromise.create({ provider: wsProvider });
   if (!wsProvider.isConnected) {
     return undefined;
   }
-  const api = await ApiPromise.create({ provider: wsProvider });
   const { address } = config;
   return new ContractPromise(api, abi, address);
 };
