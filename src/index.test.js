@@ -32,4 +32,17 @@ describe('CallView Funcs Test 1', () => {
     config.address = contractAddr;
   })
 
+  describe('Check UserName And UserAddress Validity', () => {
+    it('should User Be Available', (done) => {
+      let result = subscryptDataGetter.isUsernameAvailable(userName);
+      assert.equal(result.status, successStatus)
+    });
+
+    it('should The Address Be For The User', function () {
+      let result = subscryptDataGetter.getUsername(userAddress);
+      assert.equal(result.status, successStatus);
+      assert.equal(result.result, userName);
+    });
+  })
+
 })
