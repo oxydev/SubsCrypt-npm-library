@@ -71,11 +71,16 @@ describe('CallView Funcs Test 1', () => {
 
     it('should Retrieve Data', async function () {
       let result = await subscryptDataGetter.retrieveDataWithUsername(userName, userWholeData[0].provider, passWord);
+      let expectedResult = userWholeData.filter(value => value.provider === userWholeData[0].provider)
+      console.log(expectedResult);
+      console.log('shapalaq')
+      console.log(result.result);
       assert.equal(result.status, successStatus)
+      assert.deepEqual(expectedResult, result.result)
     }).timeout(REQUEST_TIMEOUT);
   })
 
-  describe('Check Checking Auth Of User & Providers', () => {
+  describe('Check Checking Auth Of User & Its Providers', () => {
     it('should CheckAuth Using User Address', async function () {
       for (let userWholeDatum of userWholeData) {
         let result = await subscryptDataGetter.checkAuth(userAddress, userWholeDatum.provider, passWord)
@@ -89,6 +94,40 @@ describe('CallView Funcs Test 1', () => {
         assert.equal(result.status, successStatus)
       }
     }).timeout(REQUEST_TIMEOUT)
+  })
+
+  describe('Check Auth Of Provider', () => {
+    it('should CheckAuth Using Provider Address', async function () {
+      let result = await subscryptDataGetter.providerCheckAuth(userAddress, passWord);
+      assert.equal(result.status, successStatus)
+    }).timeout(REQUEST_TIMEOUT);
+
+    it('should CheckAuth Using Provider Username', async function () {
+      let result = await subscryptDataGetter.providerCheckAuthWithUsername(userName, passWord);
+      assert.equal(result.status, successStatus)
+    }).timeout(REQUEST_TIMEOUT);
+  })
+
+  describe('Check Subscription Functions', () => {
+    it('should Check Subscriptions With User Address', async function () {
+      for (let [index, userWholeDatum] of userWholeData.entries()) {
+        let result = await subscryptDataGetter.checkSubscription(userAddress, userWholeDatum.provider, index)
+        assert.equal(result.status, successStatus)
+      }
+    }).timeout(REQUEST_TIMEOUT)
+
+    it('should Check Subscriptions With User Name', async function () {
+      for (let [index, userWholeDatum] of userWholeData.entries()) {
+        let result = await subscryptDataGetter.checkSubscriptionWithUsername(userName, userWholeDatum.provider, index)
+        assert.equal(result.status, successStatus)
+      }
+    }).timeout(REQUEST_TIMEOUT)
+  })
+
+  describe('Check Getting Plan Data Funcs', () => {
+    it('should Get Plan Data', async function () {
+      console.log(userWholeData[0].provider)
+    });
   })
 
 })
