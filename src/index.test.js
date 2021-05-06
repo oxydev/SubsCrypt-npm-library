@@ -125,9 +125,24 @@ describe('CallView Funcs Test 1', () => {
   })
 
   describe('Check Getting Plan Data Funcs', () => {
+    let planDataWithIndex0 = {
+      "duration": "20,000,000",
+      "active_session_limit": "1",
+      "price": "1,000",
+      "max_refund_permille_policy": "100",
+      "disabled": false
+    }
+    let planCharacteristicWithIndex0 = '';
+
     it('should Get Plan Data', async function () {
-      console.log(userWholeData[0].provider)
-    });
+      let result = await subscryptDataGetter.getPlanData(userAddress, 0)
+      assert.deepEqual(result.result, planDataWithIndex0)
+    }).timeout(REQUEST_TIMEOUT);
+
+    it('should Get Plan Characteristic', async function () {
+      let result = await subscryptDataGetter.getPlanCharacteristics(userAddress, 0)
+      assert.deepEqual(result.result, planCharacteristicWithIndex0)
+    }).timeout(REQUEST_TIMEOUT);
   })
 
 })
