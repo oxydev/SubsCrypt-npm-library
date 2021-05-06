@@ -49,6 +49,18 @@ describe('CallView Funcs Test 1', () => {
   //   });
   // })
 
+  describe('Check User Authentication', () => {
+    it('should Authenticate User Address With Password', async function () {
+      let result = await subscryptDataGetter.userCheckAuth(userAddress, passWord);
+      assert.equal(result.status, successStatus);
+    }).timeout(REQUEST_TIMEOUT);
+
+    it('should Authenticate Username With Password', async function () {
+      let result = await subscryptDataGetter.userCheckAuthWithUsername(userName, passWord);
+      assert.equal(result.status, successStatus);
+    }).timeout(REQUEST_TIMEOUT);
+  })
+
   describe('Check Getting The Data Of The User', () => {
     it('should Retrieve Whole Data', async function () {
       let result = await subscryptDataGetter.retrieveWholeDataWithUsername(userName, passWord);
@@ -61,6 +73,22 @@ describe('CallView Funcs Test 1', () => {
       let result = await subscryptDataGetter.retrieveDataWithUsername(userName, userWholeData[0].provider, passWord);
       assert.equal(result.status, successStatus)
     }).timeout(REQUEST_TIMEOUT);
+  })
+
+  describe('Check Checking Auth Of User & Providers', () => {
+    it('should CheckAuth Using User Address', async function () {
+      for (let userWholeDatum of userWholeData) {
+        let result = await subscryptDataGetter.checkAuth(userAddress, userWholeDatum.provider, passWord)
+        assert.equal(result.status, successStatus)
+      }
+    }).timeout(REQUEST_TIMEOUT)
+
+    it('should CheckAuth Using User Name', async function () {
+      for (let userWholeDatum of userWholeData) {
+        let result = await subscryptDataGetter.checkAuthWithUsername(userName, userWholeDatum.provider, passWord)
+        assert.equal(result.status, successStatus)
+      }
+    }).timeout(REQUEST_TIMEOUT)
   })
 
 })
