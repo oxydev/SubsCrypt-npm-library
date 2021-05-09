@@ -21,18 +21,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-   
-    - name: Create SSH key
-      run: |
-        mkdir -p ~/.ssh/
-        echo "$SSH_PRIVATE_KEY" > ../private.key
-        sudo chmod 600 ../private.key
-        ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-      shell: bash
-      env:
-        SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
-        SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
-        SSH_KEY_PATH: ${{ github.workspace }}/../private.key
+ 
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }} 
+        known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
+    - name: Adding Known Hosts
+      run:  ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
     - name: connect to our canvas node
       run: |
         ssh -tt -A root@206.189.154.160 -L localhost:8000:localhost:8000 -L localhost:9615:localhost:9615 -L localhost:9944:localhost:9944
