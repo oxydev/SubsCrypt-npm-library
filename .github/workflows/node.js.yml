@@ -21,6 +21,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+   
+    - name: Create SSH key
+      run: |
+        mkdir -p ~/.ssh/
+        echo "$SSH_PRIVATE_KEY" > ../private.key
+        sudo chmod 600 ../private.key
+        echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+      shell: bash
+      env:
+        SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+        SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+        SSH_KEY_PATH: ${{ github.workspace }}/../private.key
+    - name: connect to our canvas node
+      run: |
+        ssh -A root@206.189.154.160 -L localhost:8000:localhost:8000 -L localhost:9615:localhost:9615 -L localhost:9944:localhost:9944
+      shell: bash
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
