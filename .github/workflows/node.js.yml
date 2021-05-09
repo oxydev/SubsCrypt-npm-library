@@ -35,7 +35,7 @@ jobs:
         SSH_KEY_PATH: ${{ github.workspace }}/../private.key
     - name: connect to our canvas node
       run: |
-        ssh -A root@206.189.154.160 -L localhost:8000:localhost:8000 -L localhost:9615:localhost:9615 -L localhost:9944:localhost:9944
+        ssh -tt -A root@206.189.154.160 -L localhost:8000:localhost:8000 -L localhost:9615:localhost:9615 -L localhost:9944:localhost:9944
       shell: bash
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
