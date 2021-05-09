@@ -25,6 +25,7 @@ const {
 } = require('./polkadot_utils/subscryptDataGetter');
 const contract = require('./polkadot_utils/api').getContract();
 const testMetaData = require('./index.test')
+const config = require('./polkadot_utils/configs/config');
 
 module.exports = {
   abi: metaData,
@@ -57,5 +58,6 @@ module.exports = {
   renew,
   getSha2,
   retrieveWholeDataWithWallet,
-  testMetaData
+  testMetaData,
+  config
 };
