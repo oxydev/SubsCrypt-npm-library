@@ -10,6 +10,7 @@ window = global;
 const server = require('./index.js');
 const config = require('./polkadot_utils/configs/config');
 const subscryptDataGetter = require('./polkadot_utils/subscryptDataGetter');
+const { isConnected } = require('./polkadot_utils/interact');
 
 describe('Metadata Test', () => {
     it('Metadata Test', (done) => {
@@ -33,7 +34,12 @@ describe('CallView Funcs Test 1', () => {
         // Init Contract Address
         config.address = contractAddr;
     })
-
+    describe('Check Server', () => {
+        it('should be connected to server', async function () {
+            let result = await isConnected();
+            assert.equal(result, true);
+        }).timeout(REQUEST_TIMEOUT);
+    })
     // describe('Check UserName And UserAddress Validity', () => {
     //   it('should User Be Available', async function (done) {
     //     let result = await subscryptDataGetter.isUsernameAvailable(userName);
