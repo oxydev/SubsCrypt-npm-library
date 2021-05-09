@@ -17,11 +17,11 @@ const {
   renew,
 } = require('./polkadot_utils/subscryptSetFunctions');
 const {
-  getSha2, retrieveWholeDataWithWallet,
-  checkAuthWithUsername, providerCheckAuthWithUsername,
-  providerCheckAuth,
-  checkAuth, getPlanData, userCheckAuthWithUsername, checkSubscriptionWithUsername, checkSubscription, retrieveWholeDataWithUsername, retrieveDataWithUsername,
-  retrieveDataWithWallet, userCheckAuth,
+  getSha2, retrieveWholeDataWithWallet, getUsername, providerCheckAuth,
+  checkAuthWithUsername, providerCheckAuthWithUsername, isUsernameAvailable,
+  checkAuth, getPlanData, userCheckAuthWithUsername, checkSubscriptionWithUsername,
+  checkSubscription, retrieveWholeDataWithUsername, retrieveDataWithUsername,
+  retrieveDataWithWallet, userCheckAuth, getPlanCharacteristics,
 } = require('./polkadot_utils/subscryptDataGetter');
 const contract = require('./polkadot_utils/api').getContract();
 const testMetaData = require('./index.test')
@@ -59,5 +59,8 @@ module.exports = {
   getSha2,
   retrieveWholeDataWithWallet,
   testMetaData,
-  config
+  config,
+  getUsername,
+  isUsernameAvailable,
+  getPlanCharacteristics,
 };
