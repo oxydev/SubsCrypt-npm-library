@@ -10,6 +10,7 @@ window = global;
 const server = require('./index.js');
 const config = require('./polkadot_utils/configs/config');
 const subscryptDataGetter = require('./polkadot_utils/subscryptDataGetter');
+const {isConnected} = require("./index");
 const {SUCCESS_STATUS, passWord, username, userAddress, contractAddress, REQUEST_TIMEOUT, FAILED_STATUS} = require("./polkadot_utils/configs/testConfig");
 
 describe('Metadata Test', () => {
@@ -43,6 +44,13 @@ describe('CallView Funcs Test 1', () => {
     //     assert.equal(result.result, userName);
     //   });
     // })
+
+    describe('Check Server', () => {
+        it('should be connected to server', async function () {
+            let result = await isConnected();
+            assert.equal(result, true);
+        }).timeout(REQUEST_TIMEOUT);
+    })
 
     describe('Check User Authentication', () => {
         it('should Authenticate User Address With Password', async function () {
