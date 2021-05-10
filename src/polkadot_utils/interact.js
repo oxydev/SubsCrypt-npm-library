@@ -31,8 +31,7 @@ module.exports.sendFunction = async (func, address, injector, value, ...args) =>
     });
   }
 
-  return contract.exec(func,
-    { value, gasLimit: -1 }, ...args).signAndSend(address, { signer: injector.signer },
+  return contract.tx[func]({ value, gasLimit: -1 }, ...args).signAndSend(address, { signer: injector.signer },
     ({ events = [], status }) => {
       console.log('Transaction status:', status.type);
 
