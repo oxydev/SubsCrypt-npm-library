@@ -47,18 +47,18 @@ describe('CallView Funcs Test 1', () => {
       assert.equal(result.result, false);
     }).timeout(REQUEST_TIMEOUT);
 
-    it('should The Address Be For The User', async () => {
-      const result = await subscryptDataGetter.getUsername(userAddress);
-      assert.equal(result.status, SUCCESS_STATUS);
-      console.log(result);
-      assert.equal(result.result.substring(1), username);
-    }).timeout(REQUEST_TIMEOUT);
-    it('should The Address Be For The provider', async () => {
-      const result = await subscryptDataGetter.getUsername(providerAddress);
-      assert.equal(result.status, SUCCESS_STATUS);
-      console.log(result);
-      assert.equal(result.result.substring(1), providerName);
-    }).timeout(REQUEST_TIMEOUT);
+    // it('should The Address Be For The User', async () => {
+    //   const result = await subscryptDataGetter.getUsername(userAddress);
+    //   assert.equal(result.status, SUCCESS_STATUS);
+    //   console.log(result);
+    //   assert.equal(result.result.substring(1), username);
+    // }).timeout(REQUEST_TIMEOUT);
+    // it('should The Address Be For The provider', async () => {
+    //   const result = await subscryptDataGetter.getUsername(providerAddress);
+    //   assert.equal(result.status, SUCCESS_STATUS);
+    //   console.log(result);
+    //   assert.equal(result.result.substring(1), providerName);
+    // }).timeout(REQUEST_TIMEOUT);
   });
 
   describe('Check Server', () => {
