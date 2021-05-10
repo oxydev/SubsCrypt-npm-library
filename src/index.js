@@ -24,7 +24,7 @@ const {
   retrieveDataWithWallet, userCheckAuth,
 } = require('./polkadot_utils/subscryptDataGetter');
 const contract = require('./polkadot_utils/api').getContract();
-const testMetaData = require('./index.test')
+const testMetaData = require('./polkadot_utils/configs/testConfig')
 const config = require('./polkadot_utils/configs/config');
 
 module.exports = {

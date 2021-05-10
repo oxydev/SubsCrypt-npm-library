@@ -10,6 +10,7 @@ window = global;
 const server = require('./index.js');
 const config = require('./polkadot_utils/configs/config');
 const subscryptDataGetter = require('./polkadot_utils/subscryptDataGetter');
+const {SUCCESS_STATUS, passWord, username, userAddress, contractAddress, REQUEST_TIMEOUT, FAILED_STATUS} = require("./polkadot_utils/configs/testConfig");
 
 describe('Metadata Test', () => {
     it('Metadata Test', (done) => {
@@ -18,20 +19,14 @@ describe('Metadata Test', () => {
     });
 });
 
-const REQUEST_TIMEOUT = 10000;
-const FAILED_STATUS = 'Failed', SUCCESS_STATUS = 'Fetched'
-let contractAddr = '5CcGoKyVcQmB7iCGdihKG4671iwhZAtReUN8JccAvBQMo2hM';
-let userName = 'saber2';
-let userAddress = '5Dyu5YxLufavjPg8vP31BhKs5xz8ncdkQcNdGwf5XtW4C9Ym';
-let passWord = 'password';
-let userWholeData;
 describe('CallView Funcs Test 1', () => {
+    let userWholeData;
 
     before(function () {
         //todo
         // Init Timeout
         // Init Contract Address
-        config.address = contractAddr;
+        config.address = contractAddress;
     })
 
     // describe('Check UserName And UserAddress Validity', () => {
@@ -56,21 +51,21 @@ describe('CallView Funcs Test 1', () => {
         }).timeout(REQUEST_TIMEOUT);
 
         it('should Authenticate Username With Password', async function () {
-            let result = await subscryptDataGetter.userCheckAuthWithUsername(userName, passWord);
+            let result = await subscryptDataGetter.userCheckAuthWithUsername(username, passWord);
             assert.equal(result.status, SUCCESS_STATUS);
         }).timeout(REQUEST_TIMEOUT);
     })
 
     describe('Check Getting The Data Of The User', () => {
         it('should Retrieve Whole Data', async function () {
-            let result = await subscryptDataGetter.retrieveWholeDataWithUsername(userName, passWord);
+            let result = await subscryptDataGetter.retrieveWholeDataWithUsername(username, passWord);
             assert.equal(result.status, SUCCESS_STATUS);
             // console.log(result.result)
             userWholeData = result.result;
         }).timeout(REQUEST_TIMEOUT);
 
         it('should Retrieve Data', async function () {
-            let result = await subscryptDataGetter.retrieveDataWithUsername(userName, userWholeData[0].provider, passWord);
+            let result = await subscryptDataGetter.retrieveDataWithUsername(username, userWholeData[0].provider, passWord);
             let expectedResult = userWholeData.filter(value => value.provider === userWholeData[0].provider)
             console.log(expectedResult);
             console.log('shapalaq')
@@ -118,7 +113,7 @@ describe('CallView Funcs Test 1', () => {
 
         it('should Check Subscriptions With User Name', async function () {
             for (let [index, userWholeDatum] of userWholeData.entries()) {
-                let result = await subscryptDataGetter.checkSubscriptionWithUsername(userName, userWholeDatum.provider, index)
+                let result = await subscryptDataGetter.checkSubscriptionWithUsername(username, userWholeDatum.provider, index)
                 assert.equal(result.status, SUCCESS_STATUS)
             }
         }).timeout(REQUEST_TIMEOUT)
@@ -146,14 +141,3 @@ describe('CallView Funcs Test 1', () => {
     })
 
 })
-
-module.exports = {
-    contractAddress: contractAddr,
-    username: userName,
-    userAddress: userAddress,
-    passWord: passWord,
-    userWholeData: userWholeData,
-    FAILED_STATUS: FAILED_STATUS,
-    SUCCESS_STATUS: SUCCESS_STATUS,
-    REQUEST_TIMEOUT: REQUEST_TIMEOUT
-}
