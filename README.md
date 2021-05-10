@@ -1,9 +1,9 @@
 # SubsCrypt-npm-library
 <img src="https://oxydev.github.io/SubsCrypt-docs/images/logo2.png" width="500">
 
-[![npm](https://img.shields.io/npm/v/subscrypt.svg)](https://www.npmjs.com/package/@oxydev/subscrypt)
+[![npm](https://img.shields.io/npm/v/@oxydev/subscrypt.svg)](https://www.npmjs.com/package/@oxydev/subscrypt)
 [![Test status](https://github.com/oxydev/SubsCrypt-npm-library/actions/workflows/node.js.yml/badge.svg)](https://github.com/oxydev/SubsCrypt-npm-library/actions/workflows/node.js.yml)
-[![npm module downloads](https://badgen.net/npm/dt/subscrypt)](https://www.npmjs.org/package/subscrypt)
+[![npm module downloads](https://badgen.net/npm/dt/@oxydev/subscrypt)](https://www.npmjs.com/package/@oxydev/subscrypt)
 # Import Package
 We have made this wrapper over SubsCrypt contract to make uses of our api easier. 
 You have to option right now, either you can use the latest version of code on repo or use the npm package on npm repository which is the latest version of this repo's release.
