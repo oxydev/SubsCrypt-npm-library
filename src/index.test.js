@@ -46,6 +46,9 @@ describe('CallView Funcs Test 1', () => {
       assert.equal(result.status, SUCCESS_STATUS);
       assert.equal(result.result, false);
     }).timeout(REQUEST_TIMEOUT);
+    
+    // this issue could resolve these tests:
+    // https://github.com/polkadot-js/api/issues/3515
 
     // it('should The Address Be For The User', async () => {
     //   const result = await subscryptDataGetter.getUsername(userAddress);
