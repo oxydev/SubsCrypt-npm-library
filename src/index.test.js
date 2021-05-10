@@ -30,20 +30,20 @@ describe('CallView Funcs Test 1', () => {
         config.address = contractAddress;
     })
 
-    // describe('Check UserName And UserAddress Validity', () => {
-    //   it('should User Be Available', async function (done) {
-    //     let result = await subscryptDataGetter.isUsernameAvailable(userName);
-    //     console.log(result)
-    //     assert.equal(result.status, SUCCESS_STATUS)
-    //     done();
-    //   });
-    //
-    //   it('should The Address Be For The User', function () {
-    //     let result = subscryptDataGetter.getUsername(userAddress);
-    //     assert.equal(result.status, SUCCESS_STATUS);
-    //     assert.equal(result.result, userName);
-    //   });
-    // })
+    describe('Check UserName And UserAddress Validity', () => {
+      it('should User Be Available', async function (done) {
+        let result = await subscryptDataGetter.isUsernameAvailable(username);
+        console.log(result)
+        assert.equal(result.status, SUCCESS_STATUS)
+        done();
+      });
+
+      it('should The Address Be For The User', function () {
+        let result = subscryptDataGetter.getUsername(userAddress);
+        assert.equal(result.status, SUCCESS_STATUS);
+        assert.equal(result.result, username);
+      });
+    })
 
     describe('Check Server', () => {
         it('should be connected to server', async function () {
@@ -93,7 +93,7 @@ describe('CallView Funcs Test 1', () => {
 
         it('should CheckAuth Using User Name', async function () {
             for (let userWholeDatum of userWholeData) {
-                let result = await subscryptDataGetter.checkAuthWithUsername(userName, userWholeDatum.provider, passWord)
+                let result = await subscryptDataGetter.checkAuthWithUsername(username, userWholeDatum.provider, passWord)
                 assert.equal(result.status, SUCCESS_STATUS)
             }
         }).timeout(REQUEST_TIMEOUT)
@@ -106,7 +106,7 @@ describe('CallView Funcs Test 1', () => {
         }).timeout(REQUEST_TIMEOUT);
 
         it('should CheckAuth Using Provider Username', async function () {
-            let result = await subscryptDataGetter.providerCheckAuthWithUsername(userName, passWord);
+            let result = await subscryptDataGetter.providerCheckAuthWithUsername(username, passWord);
             assert.equal(result.status, SUCCESS_STATUS)
         }).timeout(REQUEST_TIMEOUT);
     })
