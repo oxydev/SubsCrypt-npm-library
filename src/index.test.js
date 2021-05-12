@@ -14,7 +14,7 @@ const subscryptDataGetter = require('./polkadot_utils/subscryptDataGetter');
 const { isConnected } = require('./index');
 const {
   SUCCESS_STATUS, passWord, username, userAddress, contractAddress, providerName,
-  providerAddress, REQUEST_TIMEOUT, FAILED_STATUS,
+  providerAddress, REQUEST_TIMEOUT, FAILED_STATUS, planDataWithIndex0, planCharacteristicWithIndex0
 } = require('./polkadot_utils/configs/testConfig');
 
 describe('Metadata Test', () => {
@@ -46,7 +46,7 @@ describe('CallView Funcs Test 1', () => {
       assert.equal(result.status, SUCCESS_STATUS);
       assert.equal(result.result, false);
     }).timeout(REQUEST_TIMEOUT);
-    
+
     // this issue could resolve these tests:
     // https://github.com/polkadot-js/api/issues/3515
 
@@ -145,14 +145,6 @@ describe('CallView Funcs Test 1', () => {
   });
 
   describe('Check Getting Plan Data Funcs', () => {
-    const planDataWithIndex0 = {
-      duration: '1,000,000',
-      price: '1,000',
-      max_refund_permille_policy: '100',
-      disabled: false,
-    };
-    const planCharacteristicWithIndex0 = ['key1plan0'];
-
     it('should Get Plan Data', async () => {
       const result = await subscryptDataGetter.getPlanData(providerAddress, 0);
       assert.deepEqual(result.result, planDataWithIndex0);
