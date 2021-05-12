@@ -12,8 +12,8 @@
     "test": "mocha src/*.test.js --exit"
   },
   "dependencies": {
-    "@polkadot/api": "^4.9.2",
-    "@polkadot/api-contract": "^4.9.2",
+    "@polkadot/api": "^4.9.3-16",
+    "@polkadot/api-contract": "^4.9.3-16",
     "@polkadot/extension-dapp": "0.37.3-17"
   },
   "devDependencies": {
