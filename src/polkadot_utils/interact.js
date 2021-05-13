@@ -8,9 +8,7 @@ module.exports.callViewFunction = async (func, address, ...args) => {
       status: 'NotConnected',
     });
   }
-
-  const result = await contract.read(func, { value: 0, gasLimit: -1 }, ...args)
-    .send(address);
+  const result = await contract.query[func](address, { value: 0, gasLimit: -1 }, ...args);
   if (result.result.isOk) {
     return {
       status: 'Fetched',
@@ -33,8 +31,7 @@ module.exports.sendFunction = async (func, address, injector, value, ...args) =>
     });
   }
 
-  return contract.exec(func,
-    { value, gasLimit: -1 }, ...args).signAndSend(address, { signer: injector.signer },
+  return contract.tx[func]({ value, gasLimit: -1 }, ...args).signAndSend(address, { signer: injector.signer },
     ({ events = [], status }) => {
       console.log('Transaction status:', status.type);
 

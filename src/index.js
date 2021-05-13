@@ -21,9 +21,11 @@ const {
   checkAuthWithUsername, providerCheckAuthWithUsername, isUsernameAvailable,
   checkAuth, getPlanData, userCheckAuthWithUsername, checkSubscriptionWithUsername,
   checkSubscription, retrieveWholeDataWithUsername, retrieveDataWithUsername,
-  retrieveDataWithWallet, userCheckAuth,
+  retrieveDataWithWallet, userCheckAuth, getPlanCharacteristics,
 } = require('./polkadot_utils/subscryptDataGetter');
 const contract = require('./polkadot_utils/api').getContract();
+const testMetaData = require('./polkadot_utils/configs/testConfig')
+const config = require('./polkadot_utils/configs/config');
 
 module.exports = {
   abi: metaData,
@@ -56,6 +58,9 @@ module.exports = {
   renew,
   getSha2,
   retrieveWholeDataWithWallet,
+  testMetaData,
+  config,
   getUsername,
   isUsernameAvailable,
+  getPlanCharacteristics,
 };
