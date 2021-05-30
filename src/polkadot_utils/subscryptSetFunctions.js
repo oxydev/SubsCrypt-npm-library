@@ -11,7 +11,7 @@ const { sendFunction } = require('./interact');
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
 async function setSubscryptPass(address, injector, fallback, passHash) {
-  return sendFunction('setSubscryptPass', address, injector, fallback, 0, passHash);
+  return sendFunction('setSubscryptPass', address, injector, 0, fallback, passHash);
 }
 
 // provider_address: AccountId
@@ -27,7 +27,7 @@ async function setSubscryptPass(address, injector, fallback, passHash) {
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
 async function setPassHashOfUserForEachProvider(address, injector, fallback, providerAddress, passHash) {
-  return sendFunction('setPassHashOfUserForEachProvider', address, injector, fallback, 0, providerAddress, passHash);
+  return sendFunction('setPassHashOfUserForEachProvider', address, injector, 0, fallback, providerAddress, passHash);
 }
 
 /**
@@ -40,7 +40,7 @@ async function setPassHashOfUserForEachProvider(address, injector, fallback, pro
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
 async function refund(address, injector, fallback, providerAddress, planIndex) {
-  return sendFunction('refund', address, injector, fallback, 0, providerAddress, planIndex);
+  return sendFunction('refund', address, injector, 0, fallback, providerAddress, planIndex);
 }
 
 /**
@@ -58,7 +58,7 @@ async function renew(address, injector, fallback, providerAddress, planIndex, ne
   let value = 0;
   if (plan.status === 'Fetched') value = plan.result.price;
   else return false;
-  return sendFunction('renew', address, injector, fallback, value, providerAddress, planIndex, newCharacteristicsValues);
+  return sendFunction('renew', address, injector, value, fallback,  providerAddress, planIndex, newCharacteristicsValues);
 }
 
 /**
@@ -69,7 +69,7 @@ async function renew(address, injector, fallback, providerAddress, planIndex, ne
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
 async function withdraw(address, injector, fallback) {
-  sendFunction('withdraw', address, injector, fallback, 0);
+  sendFunction('withdraw', address, injector, 0, fallback);
 }
 //             provider_address: AccountId,
 //             plan_index: u128,
@@ -94,7 +94,7 @@ async function subscribe(address, injector, fallback, providerAddress,
   let value = 0;
   if (plan.status === 'Fetched') value = plan.result.price;
   else return;
-  return sendFunction('subscribe', address, injector, fallback, value, providerAddress, planIndex, passHash, username, newCharacteristicsValues);
+  return sendFunction('subscribe', address, injector,value, fallback, providerAddress, planIndex, passHash, username, newCharacteristicsValues);
 }
 
 /**
@@ -106,7 +106,7 @@ async function subscribe(address, injector, fallback, providerAddress,
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
 async function changeDisable(address, injector, fallback, planIndex) {
-  return sendFunction('changeDisable', address, injector, fallback, 0, planIndex);
+  return sendFunction('changeDisable', address, injector, 0, fallback, planIndex);
 }
 
 /**
@@ -123,7 +123,7 @@ async function changeDisable(address, injector, fallback, planIndex) {
  */
 async function editPlan(address, injector, fallback, planIndex,
   duration, price, maxRefundPermillePolicy, disabled) {
-  return sendFunction('editPlan', address, injector, fallback, 0, planIndex, duration, price, maxRefundPermillePolicy, disabled);
+  return sendFunction('editPlan', address, injector, 0, fallback, planIndex, duration, price, maxRefundPermillePolicy, disabled);
 }
 
 /**
@@ -138,7 +138,7 @@ async function editPlan(address, injector, fallback, planIndex,
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
 async function addPlan(address, injector, fallback, durations, prices, maxRefundPermillePolicies, planCharacteristics) {
-  sendFunction('addPlan', address, injector, fallback, 0, durations, prices, maxRefundPermillePolicies, planCharacteristics);
+  sendFunction('addPlan', address, injector, 0, fallback, durations, prices, maxRefundPermillePolicies, planCharacteristics);
 }
 
 /**
@@ -170,7 +170,7 @@ async function providerRegister(address, injector, fallback, durations, prices, 
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
 async function addCharacteristicForPlan(address, injector, fallback, planIndex, planCharacteristics) {
-  sendFunction('addCharacteristicForPlan', address, injector, fallback, 0, planIndex, planCharacteristics);
+  sendFunction('addCharacteristicForPlan', address, injector,0, fallback, planIndex, planCharacteristics);
 }
 
 module.exports = {
