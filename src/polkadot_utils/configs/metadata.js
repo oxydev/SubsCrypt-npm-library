@@ -1,7 +1,7 @@
 const metaData ={
   "metadataVersion": "0.1.0",
   "source": {
-    "hash": "0x70481d61a6102886536ca6a84479e72f0cbe9e4ad408fea0d3654ab0493399e9",
+    "hash": "0xe0c939932d99b1917e0f93aaba08514dd752d684257835d93df1fdfed8deae13",
     "language": "ink! 3.0.0-rc3",
     "compiler": "rustc 1.53.0-nightly"
   },
@@ -1109,6 +1109,32 @@ const metaData ={
               ],
               "type": 17
             }
+          }
+        ],
+        "docs": [],
+        "mutates": false,
+        "name": [
+          "get_address_by_username"
+        ],
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "AccountId"
+          ],
+          "type": 6
+        },
+        "selector": "0x9162c3a5"
+      },
+      {
+        "args": [
+          {
+            "name": "username",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 17
+            }
           },
           {
             "name": "pass_phrase",
@@ -1346,6 +1372,30 @@ const metaData ={
           "type": 16
         },
         "selector": "0x45f44239"
+      },
+      {
+        "args": [
+          {
+            "name": "string",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 17
+            }
+          }
+        ],
+        "docs": [],
+        "mutates": false,
+        "name": [
+          "get_sha2"
+        ],
+        "payable": false,
+        "returnType": {
+          "displayName": [],
+          "type": 7
+        },
+        "selector": "0x30be6595"
       },
       {
         "args": [
@@ -2804,6 +2854,6 @@ const metaData ={
       }
     }
   ]
-};
+}
 
 module.exports = metaData;
