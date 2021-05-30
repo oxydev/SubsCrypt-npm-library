@@ -1,7 +1,3 @@
-// This line of code is for the problem mentioned in Pull Request #4
-// https://github.com/oxydev/SubsCrypt-npm-library/pull/4
-window = global;
-
 const {
   web3Accounts,
   web3Enable,
