@@ -26,7 +26,7 @@ const {
 const contract = require('./polkadot_utils/api').getContract();
 const testMetaData = require('./polkadot_utils/configs/testConfig')
 const config = require('./polkadot_utils/configs/config');
-
+const {getBalance} = require('./polkadot_utils/api');
 module.exports = {
   abi: metaData,
   contract,
@@ -63,4 +63,5 @@ module.exports = {
   getUsername,
   isUsernameAvailable,
   getPlanCharacteristics,
+  getBalance
 };

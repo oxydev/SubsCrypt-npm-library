@@ -14,3 +14,10 @@ module.exports.getContract = async () => {
   const { address } = config;
   return new ContractPromise(api, abi, address);
 };
+
+module.exports.getBalance = async (sender) => {
+  const wsProvider = new WsProvider(config.node);
+  const api = await ApiPromise.create({ provider: wsProvider });
+  const data = await api.query.system.account(sender);
+  return data.data.free;
+};

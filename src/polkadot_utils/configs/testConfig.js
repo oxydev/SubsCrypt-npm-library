@@ -1,19 +1,19 @@
-const REQUEST_TIMEOUT = 10000;
+const REQUEST_TIMEOUT = 40000;
 const FAILED_STATUS = 'Failed'; const
   SUCCESS_STATUS = 'Fetched';
-const contractAddr = '5GHPvbpy1GQZMqcAQUV22sW9G8sx1FNEvexd9M8kufXGJzZq';
+const contractAddr = '5D2hNXjKDUZ9Ujk6edtHncH6k5fbRXsU7jL65BJa5Ritq3Wr';
 const userName = 'user';
 const providerName = 'provider';
-const userAddress = '5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty';
-const providerAddress = '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY';
+const userAddress = '5HpG9w8EBLe5XCrbczpwq5TSXvedjrBGCwqxK1iQ7qUsSWFc';
+const providerAddress = '5GNJqTPyNqANBkUVMN1LPPrxXnFouWXoe2wNSmmEoLctxiZY';
 const passWord = 'password';
 const planDataWithIndex0 = {
-  duration: '1,000,000',
-  price: '1,000',
+  duration: '86,400,000',
+  price: '1,000,000',
   max_refund_permille_policy: '100',
   disabled: false,
 };
-const planCharacteristicWithIndex0 = ['key1plan0'];
+const planCharacteristicWithIndex0 = ['plan0'];
 
 let userWholeData;
 
