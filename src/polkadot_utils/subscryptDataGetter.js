@@ -154,6 +154,7 @@ async function providerCheckAuth(providerAddress, password) {
   return callViewFunction('providerCheckAuth',
     '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', providerAddress, password);
 }
+
 /**
  * Check password of provider for SubsCrypt Dashboard with username
  * @param {string} providerUsername - Username of provider
@@ -240,6 +241,17 @@ async function getUsername(sender) {
   return callViewFunction('getUsername', sender);
 }
 
+/**
+ * returns that how many plans a provider has
+ * @param {string} providerAddress - Address of Provider
+ * @returns {Promise<number|Failed>} - Result of request
+ */
+async function getPlanLength(providerAddress) {
+  return callViewFunction('getPlanLength',
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY',
+    providerAddress);
+}
+
 module.exports = {
   getPlanData,
   checkSubscription,
@@ -258,4 +270,5 @@ module.exports = {
   getPlanCharacteristics,
   isUsernameAvailable,
   getUsername,
+  getPlanLength,
 };

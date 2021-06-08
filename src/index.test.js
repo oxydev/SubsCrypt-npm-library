@@ -8,13 +8,13 @@ const { expect } = chai;
 // https://github.com/oxydev/SubsCrypt-npm-library/pull/4
 window = global;
 
-const server = require('./index.js');
+const server = require('./index');
 const config = require('./polkadot_utils/configs/config');
 const subscryptDataGetter = require('./polkadot_utils/subscryptDataGetter');
 const { isConnected } = require('./index');
 const {
   SUCCESS_STATUS, passWord, username, userAddress, contractAddress, providerName,
-  providerAddress, REQUEST_TIMEOUT, FAILED_STATUS, planDataWithIndex0, planCharacteristicWithIndex0,
+  providerAddress, REQUEST_TIMEOUT, FAILED_STATUS, plansData, plansCharacteristic,
 } = require('./polkadot_utils/configs/testConfig');
 
 describe('Metadata Test', () => {
@@ -142,15 +142,25 @@ describe('CallView Funcs Test 1', () => {
     }).timeout(REQUEST_TIMEOUT);
   });
 
+  describe('Getting Plan Data Count', () => {
+    it('should Get Plan Data Length', async () => {
+      const result = await subscryptDataGetter.getPlanLength(providerAddress);
+      assert.equal(result.result, plansData.length);
+    }).timeout(REQUEST_TIMEOUT);
+  });
   describe('Check Getting Plan Data Funcs', () => {
     it('should Get Plan Data', async () => {
-      const result = await subscryptDataGetter.getPlanData(providerAddress, 0);
-      assert.deepEqual(result.result, planDataWithIndex0);
+      plansData.forEach(async (plan, index) => {
+        const result = await subscryptDataGetter.getPlanData(providerAddress, index);
+        assert.deepEqual(result.result, plan);
+      });
     }).timeout(REQUEST_TIMEOUT);
 
     it('should Get Plan Characteristic', async () => {
-      const result = await subscryptDataGetter.getPlanCharacteristics(providerAddress, 0);
-      assert.deepEqual(result.result, planCharacteristicWithIndex0);
+      plansCharacteristic.forEach(async (planChar, index) => {
+        const result = await subscryptDataGetter.getPlanCharacteristics(providerAddress, index);
+        assert.deepEqual(result.result, planChar);
+      });
     }).timeout(REQUEST_TIMEOUT);
   });
 });

@@ -52,6 +52,9 @@
 <dt><a href="#getUsername">getUsername(sender)</a> ⇒ <code>Promise.&lt;(string|Failed)&gt;</code></dt>
 <dd><p>returns username of given address</p>
 </dd>
+<dt><a href="#getPlanLength">getPlanLength(providerAddress)</a> ⇒ <code>Promise.&lt;(number|Failed)&gt;</code></dt>
+<dd><p>returns that how many plans a provider has</p>
+</dd>
 </dl>
 
 ## Typedefs
@@ -296,6 +299,18 @@ returns username of given address
 | Param | Type | Description |
 | --- | --- | --- |
 | sender | <code>string</code> | Address of user |
+
+<a name="getPlanLength"></a>
+
+## getPlanLength(providerAddress) ⇒ <code>Promise.&lt;(number\|Failed)&gt;</code>
+returns that how many plans a provider has
+
+**Kind**: global function  
+**Returns**: <code>Promise.&lt;(number\|Failed)&gt;</code> - - Result of request  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| providerAddress | <code>string</code> | Address of Provider |
 
 <a name="PlanConst"></a>
 
