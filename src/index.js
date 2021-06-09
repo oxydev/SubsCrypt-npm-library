@@ -17,16 +17,17 @@ const {
   renew,
 } = require('./polkadot_utils/subscryptSetFunctions');
 const {
-  getSha2, retrieveWholeDataWithWallet, getUsername, providerCheckAuth,
+  getSha2, getPlanLength, retrieveWholeDataWithWallet, getUsername, providerCheckAuth,
   checkAuthWithUsername, providerCheckAuthWithUsername, isUsernameAvailable,
   checkAuth, getPlanData, userCheckAuthWithUsername, checkSubscriptionWithUsername,
   checkSubscription, retrieveWholeDataWithUsername, retrieveDataWithUsername,
   retrieveDataWithWallet, userCheckAuth, getPlanCharacteristics,
 } = require('./polkadot_utils/subscryptDataGetter');
 const contract = require('./polkadot_utils/api').getContract();
-const testMetaData = require('./polkadot_utils/configs/testConfig')
+const testMetaData = require('./polkadot_utils/configs/testConfig');
 const config = require('./polkadot_utils/configs/config');
-const {getBalance} = require('./polkadot_utils/api');
+const { getBalance } = require('./polkadot_utils/api');
+
 module.exports = {
   abi: metaData,
   contract,
@@ -63,5 +64,6 @@ module.exports = {
   getUsername,
   isUsernameAvailable,
   getPlanCharacteristics,
-  getBalance
+  getBalance,
+  getPlanLength,
 };
