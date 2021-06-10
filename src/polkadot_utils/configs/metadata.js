@@ -1,7 +1,7 @@
 const metaData = {
   metadataVersion: '0.1.0',
   source: {
-    hash: '0x659cdeeb12690a4de483af68a892d98d8165a4360569976a73bb4170d40eb63a',
+    hash: '0xe0c939932d99b1917e0f93aaba08514dd752d684257835d93df1fdfed8deae13',
     language: 'ink! 3.0.0-rc3',
     compiler: 'rustc 1.53.0-nightly',
   },
@@ -492,10 +492,10 @@ const metaData = {
           '',
           ' # Note',
           '',
-          " The `subscrypt_pass_hash` will only be set if it's the first subscription of the `caller` to the `SubsCrypt` platform",
+          ' The `subscrypt_pass_hash` will only be set if it\'s the first subscription of the `caller` to the `SubsCrypt` platform',
           ' `caller` can not subscribe to same `plan_index` of the same `provider_address` but',
           ' it can subscribe to different `plan_index` of same `provider_address` .',
-          " This line of code checks that if you previously subscribed to `provider_address` and if it's the first time",
+          ' This line of code checks that if you previously subscribed to `provider_address` and if it\'s the first time',
           ' then `list_of_providers` will be updated.',
           '  `if !self.records.contains_key(&(caller, provider_address)) `',
           '',
@@ -506,7 +506,7 @@ const metaData = {
           ' If `caller` is already subscribed to plan',
           ' If `provider` does not exist',
           ' If `plan_index` is bigger than the length of `plans` of `provider_address`',
-          " If 'username' has already been taken",
+          ' If \'username\' has already been taken',
           '',
           ' # Emits',
           ' SubscribeEvent',
@@ -1341,40 +1341,6 @@ const metaData = {
               type: 6,
             },
           },
-        ],
-        docs: [
-          ' We can get plan count in this function',
-          '',
-          ' # Returns',
-          ' `PlanCount` is returned',
-          '',
-          ' # Example',
-          ' Examples in `tests/test.rs`',
-        ],
-        mutates: false,
-        name: [
-          'get_plan_length',
-        ],
-        payable: false,
-        returnType: {
-          displayName: [
-            'u128',
-          ],
-          type: 2,
-        },
-        selector: '0x529755eb',
-      },
-      {
-        args: [
-          {
-            name: 'provider_address',
-            type: {
-              displayName: [
-                'AccountId',
-              ],
-              type: 6,
-            },
-          },
           {
             name: 'plan_index',
             type: {
@@ -1419,13 +1385,7 @@ const metaData = {
             },
           },
         ],
-        docs: [
-          ' Get hash of String',
-          '',
-          ' # Returns',
-          ' `String` is returned',
-          '    ',
-        ],
+        docs: [],
         mutates: false,
         name: [
           'get_sha2',

@@ -21,3 +21,10 @@ module.exports.getBalance = async (sender) => {
   const data = await api.query.system.account(sender);
   return data.data.free;
 };
+module.exports.getEvents = async (fallBackFunc) => {
+  const wsProvider = new WsProvider(config.node);
+  const api = await ApiPromise.create({ provider: wsProvider });
+  api.query.system.events(fallBackFunc);
+};
+
+module.exports.abiInstance = async () => new Abi(metaData);
