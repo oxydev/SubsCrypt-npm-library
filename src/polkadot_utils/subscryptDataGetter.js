@@ -242,6 +242,16 @@ async function getUsername(sender) {
 }
 
 /**
+ * returns address of given username
+ * @param {string} username - Username
+ * @returns {Promise<Address|Failed>} - Result of request
+ */
+async function getAddressByUsername(username) {
+  return callViewFunction('getAddressByUsername',
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', username);
+}
+
+/**
  * returns that how many plans a provider has
  * @param {string} providerAddress - Address of Provider
  * @returns {Promise<number|Failed>} - Result of request
@@ -271,4 +281,5 @@ module.exports = {
   isUsernameAvailable,
   getUsername,
   getPlanLength,
+  getAddressByUsername,
 };

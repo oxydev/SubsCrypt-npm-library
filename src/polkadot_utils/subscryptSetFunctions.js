@@ -58,7 +58,7 @@ async function renew(address, injector, fallback, providerAddress, planIndex, ne
   let value = 0;
   if (plan.status === 'Fetched') value = plan.result.price;
   else return false;
-  return sendFunction('renew', address, injector, value, fallback,  providerAddress, planIndex, newCharacteristicsValues);
+  return sendFunction('renew', address, injector, value, fallback, providerAddress, planIndex, newCharacteristicsValues);
 }
 
 /**
@@ -94,7 +94,10 @@ async function subscribe(address, injector, fallback, providerAddress,
   let value = 0;
   if (plan.status === 'Fetched') value = plan.result.price;
   else return;
-  return sendFunction('subscribe', address, injector,value, fallback, providerAddress, planIndex, passHash, username, newCharacteristicsValues);
+  value = value.replace(/\,/g, '');
+  value = Number(value);
+  console.log(value);
+  return sendFunction('subscribe', address, injector, value, fallback, providerAddress, planIndex, passHash, username, newCharacteristicsValues);
 }
 
 /**
@@ -170,7 +173,7 @@ async function providerRegister(address, injector, fallback, durations, prices, 
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
 async function addCharacteristicForPlan(address, injector, fallback, planIndex, planCharacteristics) {
-  sendFunction('addCharacteristicForPlan', address, injector,0, fallback, planIndex, planCharacteristics);
+  sendFunction('addCharacteristicForPlan', address, injector, 0, fallback, planIndex, planCharacteristics);
 }
 
 module.exports = {
