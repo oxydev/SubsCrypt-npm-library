@@ -61,14 +61,12 @@ describe('CallView Funcs Test 1', () => {
       assert.equal(result.result, providerName);
     }).timeout(REQUEST_TIMEOUT);
     it('should The Address Be For The username of User', async () => {
-      console.log(username);
       const result = await subscryptDataGetter.getAddressByUsername(username);
       assert.equal(result.status, SUCCESS_STATUS);
       assert.equal(result.result, userAddress);
     }).timeout(REQUEST_TIMEOUT);
     it('should The Address Be For The username of provider', async () => {
       const result = await subscryptDataGetter.getAddressByUsername(providerName);
-      console.log(result);
       assert.equal(result.status, SUCCESS_STATUS);
       assert.equal(result.result, providerAddress);
     }).timeout(REQUEST_TIMEOUT);

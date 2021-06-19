@@ -58,6 +58,9 @@ async function renew(address, injector, fallback, providerAddress, planIndex, ne
   let value = 0;
   if (plan.status === 'Fetched') value = plan.result.price;
   else return false;
+  value = value.replace(/\,/g, '');
+  value = Number(value);
+  console.log(value);
   return sendFunction('renew', address, injector, value, fallback, providerAddress, planIndex, newCharacteristicsValues);
 }
 
