@@ -52,6 +52,9 @@
 <dt><a href="#getUsername">getUsername(sender)</a> ⇒ <code>Promise.&lt;(string|Failed)&gt;</code></dt>
 <dd><p>returns username of given address</p>
 </dd>
+<dt><a href="#getAddressByUsername">getAddressByUsername(username)</a> ⇒ <code>Promise.&lt;(Address|Failed)&gt;</code></dt>
+<dd><p>returns address of given username</p>
+</dd>
 <dt><a href="#getPlanLength">getPlanLength(providerAddress)</a> ⇒ <code>Promise.&lt;(number|Failed)&gt;</code></dt>
 <dd><p>returns that how many plans a provider has</p>
 </dd>
@@ -299,6 +302,18 @@ returns username of given address
 | Param | Type | Description |
 | --- | --- | --- |
 | sender | <code>string</code> | Address of user |
+
+<a name="getAddressByUsername"></a>
+
+## getAddressByUsername(username) ⇒ <code>Promise.&lt;(Address\|Failed)&gt;</code>
+returns address of given username
+
+**Kind**: global function  
+**Returns**: <code>Promise.&lt;(Address\|Failed)&gt;</code> - - Result of request  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| username | <code>string</code> | Username |
 
 <a name="getPlanLength"></a>
 
