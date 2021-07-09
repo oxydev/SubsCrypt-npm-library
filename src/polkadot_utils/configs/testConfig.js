@@ -2,7 +2,7 @@ const REQUEST_TIMEOUT = 40000;
 const FAILED_STATUS = 'Failed';
 const
   SUCCESS_STATUS = 'Fetched';
-const contractAddr = '5H8tasjayGStiZ8uWZk8juzushY63gFiSRTz15gfYZVdDS5y';
+const contractAddr = '5E8UcuWx2SwpfMgbUT2vs8E4ReKbH4XEEi1kWq3CJ6zABBPi';
 const userName = 'user';
 const providerName = 'provider';
 const userAddress = '5HpG9w8EBLe5XCrbczpwq5TSXvedjrBGCwqxK1iQ7qUsSWFc';
