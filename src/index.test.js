@@ -33,7 +33,13 @@ describe('CallView Funcs Test 1', () => {
     // Init Contract Address
     config.address = contractAddress;
   });
-
+  describe('Check Get Sha2', () => {
+    it('should hash correct', async () => {
+      const result = await subscryptDataGetter.getSha2(passWord);
+      assert.equal(result.status, SUCCESS_STATUS);
+      assert.equal(result.result, '0xc73b7008f623d7ccf33cfbf4021f5d5c214b8cb76821048c1d79f0e4f53c281f');
+    }).timeout(REQUEST_TIMEOUT);
+  });
   describe('Check UserName And UserAddress Validity', () => {
     it('should User Be Available', async () => {
       const result = await subscryptDataGetter.isUsernameAvailable(username);
