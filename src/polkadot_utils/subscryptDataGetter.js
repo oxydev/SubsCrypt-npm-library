@@ -223,6 +223,18 @@ async function getPlanCharacteristics(providerAddress, planIndex) {
 }
 
 /**
+ * Getting plan Characteristics of given plan for given user
+ * @param {string} userAddress - Address of User
+ * @param {string} providerAddress - Address of Provider
+ * @param {number} planIndex - plan_index
+ * @returns {Promise<CharacteristicsFetched|Failed>} - Result of request
+ */
+async function getUserPlanCharacteristics(userAddress, providerAddress, planIndex) {
+  return callViewFunction('getUserPlanCharacteristics',
+    '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY', userAddress, providerAddress, planIndex);
+}
+
+/**
  * if username is available or not
  * @param {string} username - username
  * @returns {Promise<boolean|Failed>} - Result of request
@@ -282,4 +294,5 @@ module.exports = {
   getUsername,
   getPlanLength,
   getAddressByUsername,
+  getUserPlanCharacteristics,
 };

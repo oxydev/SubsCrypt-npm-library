@@ -1,9 +1,9 @@
 const metaData = {
   metadataVersion: '0.1.0',
   source: {
-    hash: '0x659cdeeb12690a4de483af68a892d98d8165a4360569976a73bb4170d40eb63a',
+    hash: '0x9f4969599d1052860ad6c5b133dcb9bd6ab888ee4924d1d0713b4076bfdb4256',
     language: 'ink! 3.0.0-rc3',
-    compiler: 'rustc 1.53.0-nightly',
+    compiler: 'rustc 1.55.0-nightly',
   },
   contract: {
     name: 'subscrypt',
@@ -134,6 +134,28 @@ const metaData = {
                 'u64',
               ],
               type: 1,
+            },
+          },
+          {
+            docs: [],
+            indexed: false,
+            name: 'price',
+            type: {
+              displayName: [
+                'u128',
+              ],
+              type: 2,
+            },
+          },
+          {
+            docs: [],
+            indexed: false,
+            name: 'characteristics',
+            type: {
+              displayName: [
+                'Vec',
+              ],
+              type: 16,
             },
           },
         ],
@@ -492,10 +514,10 @@ const metaData = {
           '',
           ' # Note',
           '',
-          " The `subscrypt_pass_hash` will only be set if it's the first subscription of the `caller` to the `SubsCrypt` platform",
+          ' The `subscrypt_pass_hash` will only be set if it\'s the first subscription of the `caller` to the `SubsCrypt` platform',
           ' `caller` can not subscribe to same `plan_index` of the same `provider_address` but',
           ' it can subscribe to different `plan_index` of same `provider_address` .',
-          " This line of code checks that if you previously subscribed to `provider_address` and if it's the first time",
+          ' This line of code checks that if you previously subscribed to `provider_address` and if it\'s the first time',
           ' then `list_of_providers` will be updated.',
           '  `if !self.records.contains_key(&(caller, provider_address)) `',
           '',
@@ -506,7 +528,7 @@ const metaData = {
           ' If `caller` is already subscribed to plan',
           ' If `provider` does not exist',
           ' If `plan_index` is bigger than the length of `plans` of `provider_address`',
-          " If 'username' has already been taken",
+          ' If \'username\' has already been taken',
           '',
           ' # Emits',
           ' SubscribeEvent',
@@ -1333,6 +1355,58 @@ const metaData = {
       {
         args: [
           {
+            name: 'user',
+            type: {
+              displayName: [
+                'AccountId',
+              ],
+              type: 6,
+            },
+          },
+          {
+            name: 'provider_address',
+            type: {
+              displayName: [
+                'AccountId',
+              ],
+              type: 6,
+            },
+          },
+          {
+            name: 'plan_index',
+            type: {
+              displayName: [
+                'u128',
+              ],
+              type: 2,
+            },
+          },
+        ],
+        docs: [
+          ' get user\'s plan characteristics in this function',
+          '',
+          ' # Returns',
+          ' `user\'s plan characteristics` is returned',
+          '',
+          ' # Example',
+          ' Examples in `tests/test.rs` in get_user_plan_characteristics_works test',
+        ],
+        mutates: false,
+        name: [
+          'get_user_plan_characteristics',
+        ],
+        payable: false,
+        returnType: {
+          displayName: [
+            'Vec',
+          ],
+          type: 16,
+        },
+        selector: '0xff8f9637',
+      },
+      {
+        args: [
+          {
             name: 'provider_address',
             type: {
               displayName: [
@@ -1346,7 +1420,7 @@ const metaData = {
           ' We can get plan count in this function',
           '',
           ' # Returns',
-          ' `PlanCount` is returned',
+          ' a number is returned',
           '',
           ' # Example',
           ' Examples in `tests/test.rs`',
