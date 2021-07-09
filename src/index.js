@@ -18,11 +18,26 @@ const {
   addCharacteristicForPlan,
 } = require('./polkadot_utils/subscryptSetFunctions');
 const {
-  getAddressByUsername, getSha2, getPlanLength, retrieveWholeDataWithWallet, getUsername, providerCheckAuth,
-  checkAuthWithUsername, providerCheckAuthWithUsername, isUsernameAvailable,
-  checkAuth, getPlanData, userCheckAuthWithUsername, checkSubscriptionWithUsername,
-  checkSubscription, retrieveWholeDataWithUsername, retrieveDataWithUsername,
-  retrieveDataWithWallet, userCheckAuth, getPlanCharacteristics,
+  getUserPlanCharacteristics,
+  getAddressByUsername,
+  getSha2,
+  getPlanLength,
+  retrieveWholeDataWithWallet,
+  getUsername,
+  providerCheckAuth,
+  checkAuthWithUsername,
+  providerCheckAuthWithUsername,
+  isUsernameAvailable,
+  checkAuth,
+  getPlanData,
+  userCheckAuthWithUsername,
+  checkSubscriptionWithUsername,
+  checkSubscription,
+  retrieveWholeDataWithUsername,
+  retrieveDataWithUsername,
+  retrieveDataWithWallet,
+  userCheckAuth,
+  getPlanCharacteristics,
 } = require('./polkadot_utils/subscryptDataGetter');
 const contract = require('./polkadot_utils/api').getContract();
 const testMetaData = require('./polkadot_utils/configs/testConfig');
@@ -71,4 +86,5 @@ module.exports = {
   addCharacteristicForPlan,
   getPlanLength,
   getAddressByUsername,
+  getUserPlanCharacteristics,
 };
