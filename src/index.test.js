@@ -178,5 +178,12 @@ describe('CallView Funcs Test 1', () => {
         assert.deepEqual(result.result, planChar);
       });
     }).timeout(REQUEST_TIMEOUT);
+
+    it('should Get User Plan Characteristic', async () => {
+      plansCharacteristic.forEach(async (planChar, index) => {
+        const result = await subscryptDataGetter.getUserPlanCharacteristics(userAddress, providerAddress, index);
+        assert.deepEqual(result.result, 'value');
+      });
+    }).timeout(REQUEST_TIMEOUT);
   });
 });
