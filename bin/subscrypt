@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+const yargs = require('yargs')
+const chalk = require('chalk')
+const cliSubsCrypt = require('../src/cli')
+const figlet = require('figlet');
+
+const usage = chalk.keyword('violet')('\nUsage: subscrypt <function> arg1 arg2 ...')
+console.log(
+  chalk.yellow(
+    figlet.textSync('SubsCrypt', { horizontalLayout: 'full' }),
+  ),
+);
+const options = yargs
+  .usage(usage)
+  .help(true)
+  .option('f', { alias: 'functions', describe: 'List all supported functions.', type: 'boolean', demandOption: false })
+  .argv
+
+if(yargs.argv.f == true || yargs.argv.functions == true){
+  cliSubsCrypt.showAllFunctions();
+  return;
+}
+
+if (yargs.argv._[0] == null) {
+  cliSubsCrypt.showHelp()
+  return
+}
+
+cliSubsCrypt.commandHandler(process.argv);
+return
