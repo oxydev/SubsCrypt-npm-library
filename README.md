@@ -33,6 +33,16 @@ console.log(await subscrypt.retrieveWholeDataWithPassword('5Dyu5YxLufavjPg8vP31B
 ```
 More Samples will be added to the documents of project [here](https://oxydev.github.io/SubsCrypt-docs/#/).
 
+# Use SubsCrypt CLI
+
+### Install package
+```
+npm install -g @oxydev/subscrypt
+```
+### Use CLI
+```
+subscrypt --version
+```
 # Docs
 You can access the docs [here](/docs)
 
