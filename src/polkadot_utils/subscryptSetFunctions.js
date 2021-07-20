@@ -3,15 +3,28 @@ const { sendFunction } = require('./interact');
 
 // sth in this format => '0x1cc7f105fdcf2a8067d1bb6e2dcb045c22d84a04733e2b11d90e26230854fd42'
 /**
- * It sets The SubsCrypt dashboard pass hash
+ * It sets The SubsCrypt dashboard pass hash for user
  * @param {string} address - Address Of Sender
  * @param {string} injector - Object That Signs Tx
  * @param {function} fallback - Function for handling returned result
  * @param {string} passHash - new auth token hash
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
-async function setSubscryptPass(address, injector, fallback, passHash) {
-  return sendFunction('setSubscryptPass', address, injector, 0, fallback, passHash);
+async function setUserSubscryptPass(address, injector, fallback, passHash) {
+  return sendFunction('setUserSubscryptPass', address, injector, 0, fallback, passHash);
+}
+
+// sth in this format => '0x1cc7f105fdcf2a8067d1bb6e2dcb045c22d84a04733e2b11d90e26230854fd42'
+/**
+ * It sets The SubsCrypt dashboard pass hash for user
+ * @param {string} address - Address Of Sender
+ * @param {string} injector - Object That Signs Tx
+ * @param {function} fallback - Function for handling returned result
+ * @param {string} passHash - new auth token hash
+ * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
+ */
+async function setProviderSubscryptPass(address, injector, fallback, passHash) {
+  return sendFunction('setProviderSubscryptPass', address, injector, 0, fallback, passHash);
 }
 
 // provider_address: AccountId
@@ -26,8 +39,8 @@ async function setSubscryptPass(address, injector, fallback, passHash) {
  * @param {string} passHash - new pass hash
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
-async function setPassHashOfUserForEachProvider(address, injector, fallback, providerAddress, passHash) {
-  return sendFunction('setPassHashOfUserForEachProvider', address, injector, 0, fallback, providerAddress, passHash);
+async function subsCryptPassHashForEachProvider(address, injector, fallback, providerAddress, passHash) {
+  return sendFunction('subsCryptPassHashForEachProvider', address, injector, 0, fallback, providerAddress, passHash);
 }
 
 /**
@@ -180,8 +193,9 @@ async function addCharacteristicForPlan(address, injector, fallback, planIndex, 
 }
 
 module.exports = {
-  setSubscryptPass,
-  setPassHashOfUserForEachProvider,
+  subsCryptPassHashForEachProvider,
+  setUserSubscryptPass,
+  setProviderSubscryptPass,
   refund,
   renew,
   withdraw,
