@@ -2,11 +2,11 @@ const REQUEST_TIMEOUT = 40000;
 const FAILED_STATUS = 'Failed';
 const
   SUCCESS_STATUS = 'Fetched';
-const contractAddr = '5E8UcuWx2SwpfMgbUT2vs8E4ReKbH4XEEi1kWq3CJ6zABBPi';
+const contractAddr = '5GSbbAhGYk7kY4i219MxUw2ud5Cn617WnEVp4FTXTjsTbngW';
 const userName = 'user';
 const providerName = 'provider';
-const userAddress = '5HpG9w8EBLe5XCrbczpwq5TSXvedjrBGCwqxK1iQ7qUsSWFc';
-const providerAddress = '5GNJqTPyNqANBkUVMN1LPPrxXnFouWXoe2wNSmmEoLctxiZY';
+const userAddress = '5GpAVjP8rH5mNeUrd98YgP9AU3bAMMV5RPWzqwrwDh9qEHKy';
+const providerAddress = '5Dyu5YxLufavjPg8vP31BhKs5xz8ncdkQcNdGwf5XtW4C9Ym';
 const passWord = 'password';
 
 const plansData = [{
