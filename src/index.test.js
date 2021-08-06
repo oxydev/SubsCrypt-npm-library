@@ -161,7 +161,7 @@ describe('CallView Funcs Test 1', () => {
   describe('Getting Plan Data Count', () => {
     it('should Get Plan Data Length', async () => {
       const result = await subscryptDataGetter.getPlanLength(providerAddress);
-      assert.equal(result.result, plansData.length);
+      assert.equal(result.result, 1);
     }).timeout(REQUEST_TIMEOUT);
   });
   describe('Check Getting Plan Data Funcs', () => {
