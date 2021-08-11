@@ -2,30 +2,20 @@ const REQUEST_TIMEOUT = 40000;
 const FAILED_STATUS = 'Failed';
 const
   SUCCESS_STATUS = 'Fetched';
-const contractAddr = '5GSbbAhGYk7kY4i219MxUw2ud5Cn617WnEVp4FTXTjsTbngW';
+const contractAddr = '5CLff1WP6hnswYqSFZCSgEK1Xmef8UBunHxCzgnQVFXELHj1';
 const userName = 'user';
-const providerName = 'provider';
+const providerName = 'oxydev';
 const userAddress = '5GpAVjP8rH5mNeUrd98YgP9AU3bAMMV5RPWzqwrwDh9qEHKy';
 const providerAddress = '5Dyu5YxLufavjPg8vP31BhKs5xz8ncdkQcNdGwf5XtW4C9Ym';
 const passWord = 'password';
 
 const plansData = [{
-  duration: '86,400,000',
-  price: '1,000,000',
-  max_refund_permille_policy: '100',
-  disabled: false,
-}, {
-  duration: '864,000,000',
-  price: '9,000,000',
-  max_refund_permille_policy: '150',
-  disabled: false,
-}, {
-  duration: '1,728,000,000',
-  price: '16,000,000',
+  duration: '7776000000',
+  price: '1000000000000',
   max_refund_permille_policy: '200',
   disabled: false,
 }];
-const plansCharacteristic = [['plan0'], ['plan1_0', 'plan1_1'], ['plan2_0', 'plan2_1', 'plan2_2']];
+const plansCharacteristic = [['email']];
 
 let userWholeData;
 
