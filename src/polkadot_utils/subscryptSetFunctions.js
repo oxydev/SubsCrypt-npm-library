@@ -85,7 +85,7 @@ async function renew(address, injector, fallback, providerAddress, planIndex, ne
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
 async function withdraw(address, injector, fallback) {
-  sendFunction('withdraw', address, injector, 0, fallback);
+  return sendFunction('withdraw', address, injector, 0, fallback);
 }
 //             provider_address: AccountId,
 //             plan_index: u128,
@@ -109,7 +109,7 @@ async function subscribe(address, injector, fallback, providerAddress,
   const plan = await getPlanData(providerAddress, planIndex);
   let value = 0;
   if (plan.status === 'Fetched') value = plan.result.price;
-  else return;
+  else return false;
   value = value.replace(/\,/g, '');
   value = Number(value);
   console.log(value);
@@ -157,7 +157,7 @@ async function editPlan(address, injector, fallback, planIndex,
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
 async function addPlan(address, injector, fallback, durations, prices, maxRefundPermillePolicies, planCharacteristics) {
-  sendFunction('addPlan', address, injector, 0, fallback, durations, prices, maxRefundPermillePolicies, planCharacteristics);
+  return sendFunction('addPlan', address, injector, 0, fallback, durations, prices, maxRefundPermillePolicies, planCharacteristics);
 }
 
 /**
@@ -176,7 +176,7 @@ async function addPlan(address, injector, fallback, durations, prices, maxRefund
  */
 async function providerRegister(address, injector, fallback, durations, prices, maxRefundPermillePolicies,
   moneyAddress, username, passHash, planCharacteristics) {
-  sendFunction('providerRegister', address, injector, 100, fallback, durations, prices, maxRefundPermillePolicies,
+  return sendFunction('providerRegister', address, injector, 100, fallback, durations, prices, maxRefundPermillePolicies,
     moneyAddress, username, passHash, planCharacteristics);
 }
 /**
@@ -189,7 +189,7 @@ async function providerRegister(address, injector, fallback, durations, prices, 
  * @returns {Promise<*>} - It's An async Function, And It Waits There To Return The Result Of The Transaction
  */
 async function addCharacteristicForPlan(address, injector, fallback, planIndex, planCharacteristics) {
-  sendFunction('addCharacteristicForPlan', address, injector, 0, fallback, planIndex, planCharacteristics);
+  return sendFunction('addCharacteristicForPlan', address, injector, 0, fallback, planIndex, planCharacteristics);
 }
 
 module.exports = {
