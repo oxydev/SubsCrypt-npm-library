@@ -1,4 +1,4 @@
-const REQUEST_TIMEOUT = 40000;
+const REQUEST_TIMEOUT = 60000;
 const FAILED_STATUS = 'Failed';
 const
   SUCCESS_STATUS = 'Fetched';
