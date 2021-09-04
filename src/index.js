@@ -40,7 +40,7 @@ const {
   userCheckAuth,
   getPlanCharacteristics,
 } = require('./polkadot_utils/subscryptDataGetter');
-const contract = require('./polkadot_utils/api').getContract();
+const contract = require('./polkadot_utils/api').getContract;
 const testMetaData = require('./polkadot_utils/configs/testConfig');
 const config = require('./polkadot_utils/configs/config');
 const {
