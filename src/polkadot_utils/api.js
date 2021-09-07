@@ -3,15 +3,21 @@ const { Abi, ContractPromise } = require('@polkadot/api-contract');
 const metaData = require('./configs/metadata');
 const config = require('./configs/config');
 
+const abi = new Abi(metaData);
+let wsProvider;
+let api;
+let contract;
 module.exports.getContract = async () => {
-  const abi = new Abi(metaData);
-  const wsProvider = new WsProvider(config.node);
-  const api = await ApiPromise.create({ provider: wsProvider });
-  if (!wsProvider.isConnected) {
-    return undefined;
+  if (wsProvider === undefined) {
+    wsProvider = new WsProvider(config.node);
+    api = await ApiPromise.create({ provider: wsProvider });
+    if (!wsProvider.isConnected) {
+      return undefined;
+    }
+    const { address } = config;
+    contract = new ContractPromise(api, abi, address);
   }
-  const { address } = config;
-  return new ContractPromise(api, abi, address);
+  return contract;
 };
 
 module.exports.getBalance = async (sender) => {
