@@ -225,6 +225,11 @@ describe('SubsCrypt Tests', () => {
         assert.equal(result.status, SUCCESS_STATUS);
         assert.equal(result.result, providerAddress);
       }).timeout(REQUEST_TIMEOUT);
+      it('should The Money Address Be correct', async () => {
+        const result = await subscryptDataGetter.getMoneyAddress(providerAddress);
+        assert.equal(result.status, SUCCESS_STATUS);
+        assert.equal(result.result, providerAddress);
+      }).timeout(REQUEST_TIMEOUT);
     });
 
     describe('Check Server', () => {
