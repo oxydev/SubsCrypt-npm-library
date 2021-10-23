@@ -7,7 +7,6 @@ function sleep(ms) {
 module.exports.callViewFunction = async (func, address, ...args) => {
   let contract = await getContract();
   while (contract == null) {
-    console.log('fuck3');
     contract = await getContract();
     await sleep(300);
   }
