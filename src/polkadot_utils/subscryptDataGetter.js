@@ -274,6 +274,23 @@ async function getPlanLength(providerAddress) {
     providerAddress);
 }
 
+/**
+ * returns withdrawable amount of given provider
+ * @param {string} sender - Address of provider
+ * @returns {Promise<number|Failed>} - Result of request
+ */
+async function getWithdrawableAmount(sender) {
+  return callViewFunction('getWithdrawableAmount', sender);
+}
+
+/**
+ * returns treasury address of given provider
+ * @param {string} sender - Address of provider
+ * @returns {Promise<Address|Failed>} - Result of request
+ */
+async function getMoneyAddress(sender) {
+  return callViewFunction('getMoneyAddress', sender);
+}
 module.exports = {
   getPlanData,
   checkSubscription,
@@ -295,4 +312,6 @@ module.exports = {
   getPlanLength,
   getAddressByUsername,
   getUserPlanCharacteristics,
+  getWithdrawableAmount,
+  getMoneyAddress,
 };

@@ -1,8 +1,15 @@
 const { getContract } = require('./api');
 
-module.exports.callViewFunction = async (func, address, ...args) => {
-  const contract = await getContract();
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
+module.exports.callViewFunction = async (func, address, ...args) => {
+  let contract = await getContract();
+  while (contract == null) {
+    contract = await getContract();
+    await sleep(300);
+  }
   if (contract == null) {
     return Promise.resolve({
       status: 'NotConnected',

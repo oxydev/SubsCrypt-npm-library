@@ -1,9 +1,9 @@
 const metaData = {
   metadataVersion: '0.1.0',
   source: {
-    hash: '0xb2b4a4896113c92e535e4e60d08b00149038f763330c1ff7f41d0d33c3858a1a',
-    language: 'ink! 3.0.0-rc3',
-    compiler: 'rustc 1.55.0-nightly',
+    hash: '0x71427544aa2e29e9823534c60828557baba0ef2a9100b569e90c9924c115374e',
+    language: 'ink! 3.0.0-rc5',
+    compiler: 'rustc 1.57.0-nightly',
   },
   contract: {
     name: 'subscrypt',
@@ -806,6 +806,33 @@ const metaData = {
         selector: '0xa5a47441',
       },
       {
+        args: [],
+        docs: [
+          ' This function returns the withdrawable amount',
+          '',
+          ' # Returns',
+          ' `paid` amount is returned',
+          '',
+          ' # Panics',
+          ' If `provider` does not exist',
+          '',
+          ' # Examples',
+          ' Examples in `withdraw_works` and `withdraw_works2` in `tests/test.rs`',
+        ],
+        mutates: false,
+        name: [
+          'get_withdrawable_amount',
+        ],
+        payable: false,
+        returnType: {
+          displayName: [
+            'u128',
+          ],
+          type: 2,
+        },
+        selector: '0x4dbfaced',
+      },
+      {
         args: [
           {
             name: 'user',
@@ -1118,6 +1145,25 @@ const metaData = {
           type: 14,
         },
         selector: '0xc5ad0bbe',
+      },
+      {
+        args: [],
+        docs: [
+          ' This function returns provider money address',
+        ],
+        mutates: false,
+        name: [
+          'get_money_address',
+        ],
+        payable: false,
+        returnType: {
+          displayName: [
+            'ink_env',
+            'AccountId',
+          ],
+          type: 6,
+        },
+        selector: '0xaa9a804a',
       },
       {
         args: [],
