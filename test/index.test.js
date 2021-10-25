@@ -13,39 +13,30 @@ const { expect } = chai;
 window = global;
 
 const server = require('../src');
-const config = require('../src/polkadot_utils/configs/config');
 const subscryptDataGetter = require('../src/polkadot_utils/subscryptDataGetter');
 const subscryptSetFunctions = require('../src/polkadot_utils/subscryptSetFunctions');
 const { isConnected } = require('../src');
 const {
-  SUCCESS_STATUS, passWord, username, userAddress, contractAddress, providerName,
-  providerAddress, REQUEST_TIMEOUT, FAILED_STATUS, plansData, plansCharacteristic,
+  SUCCESS_STATUS, REQUEST_TIMEOUT, plansData, plansCharacteristic,
 } = require('../src/polkadot_utils/configs/testConfig');
 
 describe('SubsCrypt Tests', () => {
-  before(() => {
-    config.address = contractAddress;
-  });
   describe('Metadata Test', () => {
     it('Metadata Test', (done) => {
       expect(server.abi).to.equal(metaData);
       done();
     });
   });
+  const keyring = new Keyring();
+  const mnemonic1 = mnemonicGenerate();
+  const mnemonic2 = mnemonicGenerate();
+  const keyringPairProvider = keyring.addFromUri(mnemonic1, { name: 'first pair' }, 'ed25519');
+  const keyringPairUser = keyring.addFromUri(mnemonic2, { name: 'second pair' }, 'ed25519');
+  const usernameProvider = (Math.random() + 1).toString(36).substring(7);
+  const usernameUser = (Math.random() + 1).toString(36).substring(7);
+  let pass = (Math.random() + 1).toString(36).substring(7);
 
   describe('Setter functions test', () => {
-    let keyringPairProvider; let keyringPairUser; let usernameProvider; let usernameUser; let pass;
-    before(() => {
-      const keyring = new Keyring();
-      const mnemonic1 = mnemonicGenerate();
-      const mnemonic2 = mnemonicGenerate();
-      keyringPairProvider = keyring.addFromUri(mnemonic1, { name: 'first pair' }, 'ed25519');
-      keyringPairUser = keyring.addFromUri(mnemonic2, { name: 'second pair' }, 'ed25519');
-      usernameProvider = (Math.random() + 1).toString(36).substring(7);
-      usernameUser = (Math.random() + 1).toString(36).substring(7);
-      pass = (Math.random() + 1).toString(36).substring(7);
-    });
-
     it('faucet Test provider', async () => {
       const beforeValueProvider = await getBalance(keyringPairProvider.address);
       console.log(await transferToken(keyringPairProvider.address));
@@ -184,20 +175,20 @@ describe('SubsCrypt Tests', () => {
 
     describe('Check Get Sha2', () => {
       it('should hash correct', async () => {
-        const result = await subscryptDataGetter.getSha2(passWord);
+        const result = await subscryptDataGetter.getSha2('password');
         assert.equal(result.status, SUCCESS_STATUS);
         assert.equal(result.result, '0xc73b7008f623d7ccf33cfbf4021f5d5c214b8cb76821048c1d79f0e4f53c281f');
       }).timeout(REQUEST_TIMEOUT);
     });
     describe('Check UserName And UserAddress Validity', () => {
       it('should User Be Available', async () => {
-        const result = await subscryptDataGetter.isUsernameAvailable(username);
+        const result = await subscryptDataGetter.isUsernameAvailable(usernameUser);
         assert.equal(result.status, SUCCESS_STATUS);
         assert.equal(result.result, false);
       }).timeout(REQUEST_TIMEOUT);
 
       it('should Username of provider Be Available', async () => {
-        const result = await subscryptDataGetter.isUsernameAvailable(providerName);
+        const result = await subscryptDataGetter.isUsernameAvailable(usernameProvider);
         assert.equal(result.status, SUCCESS_STATUS);
         assert.equal(result.result, false);
       }).timeout(REQUEST_TIMEOUT);
@@ -206,29 +197,29 @@ describe('SubsCrypt Tests', () => {
       // https://github.com/polkadot-js/api/issues/3515
 
       it('should The Address Be For The User', async () => {
-        const result = await subscryptDataGetter.getUsername(userAddress);
+        const result = await subscryptDataGetter.getUsername(keyringPairUser.address);
         assert.equal(result.status, SUCCESS_STATUS);
-        assert.equal(result.result, username);
+        assert.equal(result.result, usernameUser);
       }).timeout(REQUEST_TIMEOUT);
       it('should The Address Be For The provider', async () => {
-        const result = await subscryptDataGetter.getUsername(providerAddress);
+        const result = await subscryptDataGetter.getUsername(keyringPairProvider.address);
         assert.equal(result.status, SUCCESS_STATUS);
-        assert.equal(result.result, providerName);
+        assert.equal(result.result, usernameProvider);
       }).timeout(REQUEST_TIMEOUT);
       it('should The Address Be For The username of User', async () => {
-        const result = await subscryptDataGetter.getAddressByUsername(username);
+        const result = await subscryptDataGetter.getAddressByUsername(usernameUser);
         assert.equal(result.status, SUCCESS_STATUS);
-        assert.equal(result.result, userAddress);
+        assert.equal(result.result, keyringPairUser.address);
       }).timeout(REQUEST_TIMEOUT);
       it('should The Address Be For The username of provider', async () => {
-        const result = await subscryptDataGetter.getAddressByUsername(providerName);
+        const result = await subscryptDataGetter.getAddressByUsername(usernameProvider);
         assert.equal(result.status, SUCCESS_STATUS);
-        assert.equal(result.result, providerAddress);
+        assert.equal(result.result, keyringPairProvider.address);
       }).timeout(REQUEST_TIMEOUT);
       it('should The Money Address Be correct', async () => {
-        const result = await subscryptDataGetter.getMoneyAddress(providerAddress);
+        const result = await subscryptDataGetter.getMoneyAddress(keyringPairProvider.address);
         assert.equal(result.status, SUCCESS_STATUS);
-        assert.equal(result.result, providerAddress);
+        assert.equal(result.result, keyringPairProvider.address);
       }).timeout(REQUEST_TIMEOUT);
     });
 
@@ -241,13 +232,13 @@ describe('SubsCrypt Tests', () => {
 
     describe('Check User Authentication', () => {
       it('should Authenticate User Address With Password', async () => {
-        const result = await subscryptDataGetter.userCheckAuth(userAddress, passWord);
+        const result = await subscryptDataGetter.userCheckAuth(keyringPairUser.address, pass);
         assert.equal(result.status, SUCCESS_STATUS);
         assert.equal(result.result, true);
       }).timeout(REQUEST_TIMEOUT);
 
       it('should Authenticate Username With Password', async () => {
-        const result = await subscryptDataGetter.userCheckAuthWithUsername(username, passWord);
+        const result = await subscryptDataGetter.userCheckAuthWithUsername(usernameUser, pass);
         assert.equal(result.status, SUCCESS_STATUS);
         assert.equal(result.result, true);
       }).timeout(REQUEST_TIMEOUT);
@@ -255,25 +246,25 @@ describe('SubsCrypt Tests', () => {
 
     describe('Check Getting The Data Of The User', () => {
       it('should Retrieve Whole Data', async () => {
-        const result = await subscryptDataGetter.retrieveWholeDataWithUsername(username, passWord);
+        const result = await subscryptDataGetter.retrieveWholeDataWithUsername(usernameUser, pass);
         assert.equal(result.status, SUCCESS_STATUS);
         userWholeData = result.result;
       }).timeout(REQUEST_TIMEOUT);
 
       it('should Retrieve Whole Data', async () => {
-        const result = await subscryptDataGetter.retrieveWholeDataWithWallet(userAddress);
+        const result = await subscryptDataGetter.retrieveWholeDataWithWallet(keyringPairUser.address);
         assert.equal(result.status, SUCCESS_STATUS);
         userWholeData = result.result;
       }).timeout(REQUEST_TIMEOUT);
 
       it('should Retrieve Data', async () => {
-        const result = await subscryptDataGetter.retrieveDataWithUsername(username, userWholeData[0].provider, passWord);
+        const result = await subscryptDataGetter.retrieveDataWithUsername(usernameUser, userWholeData[0].provider, pass);
         const expectedResult = userWholeData.filter((value) => value.provider === userWholeData[0].provider);
         assert.equal(result.status, SUCCESS_STATUS);
         assert.deepEqual(expectedResult, result.result);
       }).timeout(REQUEST_TIMEOUT);
       it('should Retrieve Data with wallet', async () => {
-        const result = await subscryptDataGetter.retrieveDataWithWallet(userAddress, userWholeData[0].provider);
+        const result = await subscryptDataGetter.retrieveDataWithWallet(keyringPairUser.address, userWholeData[0].provider);
         const expectedResult = userWholeData.filter((value) => value.provider === userWholeData[0].provider);
         assert.equal(result.status, SUCCESS_STATUS);
         assert.deepEqual(expectedResult, result.result);
@@ -283,14 +274,14 @@ describe('SubsCrypt Tests', () => {
     describe('Check Checking Auth Of User & Its Providers', () => {
       it('should CheckAuth Using User Address', async () => {
         for (const userWholeDatum of userWholeData) {
-          const result = await subscryptDataGetter.checkAuth(userAddress, userWholeDatum.provider, passWord);
+          const result = await subscryptDataGetter.checkAuth(keyringPairUser.address, userWholeDatum.provider, pass);
           assert.equal(result.status, SUCCESS_STATUS);
         }
       }).timeout(REQUEST_TIMEOUT);
 
       it('should CheckAuth Using User Name', async () => {
         for (const userWholeDatum of userWholeData) {
-          const result = await subscryptDataGetter.checkAuthWithUsername(username, userWholeDatum.provider, passWord);
+          const result = await subscryptDataGetter.checkAuthWithUsername(usernameUser, userWholeDatum.provider, pass);
           assert.equal(result.status, SUCCESS_STATUS);
         }
       }).timeout(REQUEST_TIMEOUT);
@@ -298,12 +289,12 @@ describe('SubsCrypt Tests', () => {
 
     describe('Check Auth Of Provider', () => {
       it('should CheckAuth Using Provider Address', async () => {
-        const result = await subscryptDataGetter.providerCheckAuth(userAddress, passWord);
+        const result = await subscryptDataGetter.providerCheckAuth(keyringPairProvider.address, pass);
         assert.equal(result.status, SUCCESS_STATUS);
       }).timeout(REQUEST_TIMEOUT);
 
       it('should CheckAuth Using Provider Username', async () => {
-        const result = await subscryptDataGetter.providerCheckAuthWithUsername(username, passWord);
+        const result = await subscryptDataGetter.providerCheckAuthWithUsername(usernameUser, pass);
         assert.equal(result.status, SUCCESS_STATUS);
       }).timeout(REQUEST_TIMEOUT);
     });
@@ -311,14 +302,14 @@ describe('SubsCrypt Tests', () => {
     describe('Check Subscription Functions', () => {
       it('should Check Subscriptions With User Address', async () => {
         for (const [index, userWholeDatum] of userWholeData.entries()) {
-          const result = await subscryptDataGetter.checkSubscription(userAddress, userWholeDatum.provider, index);
+          const result = await subscryptDataGetter.checkSubscription(keyringPairUser.address, userWholeDatum.provider, index);
           assert.equal(result.status, SUCCESS_STATUS);
         }
       }).timeout(REQUEST_TIMEOUT);
 
       it('should Check Subscriptions With User Name', async () => {
         for (const [index, userWholeDatum] of userWholeData.entries()) {
-          const result = await subscryptDataGetter.checkSubscriptionWithUsername(username, userWholeDatum.provider, index);
+          const result = await subscryptDataGetter.checkSubscriptionWithUsername(usernameUser, userWholeDatum.provider, index);
           assert.equal(result.status, SUCCESS_STATUS);
         }
       }).timeout(REQUEST_TIMEOUT);
@@ -326,28 +317,28 @@ describe('SubsCrypt Tests', () => {
 
     describe('Getting Plan Data Count', () => {
       it('should Get Plan Data Length', async () => {
-        const result = await subscryptDataGetter.getPlanLength(providerAddress);
+        const result = await subscryptDataGetter.getPlanLength(keyringPairProvider.address);
         assert.equal(result.result, 1);
       }).timeout(REQUEST_TIMEOUT);
     });
     describe('Check Getting Plan Data Funcs', () => {
       it('should Get Plan Data', async () => {
         plansData.forEach(async (plan, index) => {
-          const result = await subscryptDataGetter.getPlanData(providerAddress, index);
+          const result = await subscryptDataGetter.getPlanData(keyringPairProvider, index);
           assert.deepEqual(result.result, plan);
         });
       }).timeout(REQUEST_TIMEOUT);
 
       it('should Get Plan Characteristic', async () => {
         plansCharacteristic.forEach(async (planChar, index) => {
-          const result = await subscryptDataGetter.getPlanCharacteristics(providerAddress, index);
+          const result = await subscryptDataGetter.getPlanCharacteristics(keyringPairProvider, index);
           assert.deepEqual(result.result, planChar);
         });
       }).timeout(REQUEST_TIMEOUT);
 
       it('should Get User Plan Characteristic', async () => {
         plansCharacteristic.forEach(async (planChar, index) => {
-          const result = await subscryptDataGetter.getUserPlanCharacteristics(userAddress, providerAddress, index);
+          const result = await subscryptDataGetter.getUserPlanCharacteristics(usernameUser, keyringPairProvider, index);
           assert.deepEqual(result.result, 'value');
         });
       }).timeout(REQUEST_TIMEOUT);
