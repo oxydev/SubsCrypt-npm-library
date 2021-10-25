@@ -35,7 +35,7 @@ describe('SubsCrypt Tests', () => {
   const usernameProvider = (Math.random() + 1).toString(36).substring(7);
   const usernameUser = (Math.random() + 1).toString(36).substring(7);
   let pass = (Math.random() + 1).toString(36).substring(7);
-
+  console.log(keyringPairProvider.address, keyringPairUser.address, usernameProvider, usernameUser, pass);
   describe('Setter functions test', () => {
     it('faucet Test provider', async () => {
       const beforeValueProvider = await getBalance(keyringPairProvider.address);
@@ -318,7 +318,7 @@ describe('SubsCrypt Tests', () => {
     describe('Getting Plan Data Count', () => {
       it('should Get Plan Data Length', async () => {
         const result = await subscryptDataGetter.getPlanLength(keyringPairProvider.address);
-        assert.equal(result.result, 1);
+        assert.equal(result.result, 2);
       }).timeout(REQUEST_TIMEOUT);
     });
     describe('Check Getting Plan Data Funcs', () => {
