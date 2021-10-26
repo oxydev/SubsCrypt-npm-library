@@ -5,7 +5,7 @@
     "@oxydev/subscrypt": "bin/subscrypt",
     "subscrypt": "bin/subscrypt"
   },
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "Saber Zafarpoor <szafarpoor@ce.sharif.edu> (https://github.com/saberdotcoder), Sepehr Kianian <sepehrkianian09@yahoo.com> (https://github.com/sepehrkianian09)",
   "license": "Apache-2.0",
   "repository": {
